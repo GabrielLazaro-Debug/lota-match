@@ -12,11 +12,13 @@ import LotacaoCard from "@/components/LotacaoCard";
 import LotacaoDetail from "@/components/LotacaoDetail";
 import CompareDialog from "@/components/CompareDialog";
 import BrazilMap from "@/components/BrazilMap";
-import { Download, FileSpreadsheet, MapPinned, Search, Settings, Shield, Upload, Layers, GitCompare, X } from "lucide-react";
+import { Download, FileSpreadsheet, MapPinned, Search, Settings, Shield, Upload, Layers, GitCompare, X, Lock, LogOut, ShieldCheck } from "lucide-react";
 import { importKmlOrKmz, importXlsx, mergeLotacoes } from "@/lib/importer";
 import { toast } from "sonner";
 import { exportRankingPdf, exportRankingXlsx } from "@/lib/exporters";
 import type { Lotacao, ScoreResult } from "@/lib/types";
+import AdminGate, { useAdmin } from "@/components/AdminGate";
+import { endSession } from "@/lib/admin";
 
 export default function Dashboard() {
   const store = useStore();
@@ -46,6 +48,19 @@ export default function Dashboard() {
 
   const xlsxRef = useRef<HTMLInputElement>(null);
   const kmlRef = useRef<HTMLInputElement>(null);
+  const { admin, refresh } = useAdmin();
+  const [gateOpen, setGateOpen] = useState(false);
+  const [pendingAction, setPendingAction] = useState<null | "xlsx" | "kml">(null);
+
+  function requireAdmin(action: "xlsx" | "kml") {
+    if (admin) {
+      if (action === "xlsx") xlsxRef.current?.click();
+      else kmlRef.current?.click();
+      return;
+    }
+    setPendingAction(action);
+    setGateOpen(true);
+  }
 
   useEffect(() => { store.reenrich(); /* eslint-disable-next-line */ }, []);
 
@@ -71,24 +86,35 @@ export default function Dashboard() {
             <Link to="/onboarding" className="ml-1 underline hover:text-primary">editar</Link>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <Button size="sm" variant="ghost" onClick={() => xlsxRef.current?.click()}><Upload className="mr-1 h-4 w-4" />Excel</Button>
-            <Button size="sm" variant="ghost" onClick={() => kmlRef.current?.click()}><MapPinned className="mr-1 h-4 w-4" />KML/KMZ</Button>
+            <Button size="sm" variant={admin ? "secondary" : "ghost"}
+              onClick={() => admin ? (endSession(), refresh(), toast.success("Sessão admin encerrada")) : setGateOpen(true)}
+              title={admin ? "Encerrar sessão admin" : "Entrar como administrador"}>
+              {admin ? <><ShieldCheck className="mr-1 h-4 w-4 text-primary" />Admin<LogOut className="ml-1 h-3 w-3" /></> : <><Lock className="mr-1 h-4 w-4" />Admin</>}
+            </Button>
+            <Button size="sm" variant="ghost" onClick={() => requireAdmin("xlsx")}><Upload className="mr-1 h-4 w-4" />Excel{!admin && <Lock className="ml-1 h-3 w-3 opacity-60" />}</Button>
+            <Button size="sm" variant="ghost" onClick={() => requireAdmin("kml")}><MapPinned className="mr-1 h-4 w-4" />KML/KMZ{!admin && <Lock className="ml-1 h-3 w-3 opacity-60" />}</Button>
             <Button size="sm" variant="ghost" onClick={() => exportRankingPdf(filtered, store.weights)}><Download className="mr-1 h-4 w-4" />PDF</Button>
             <Button size="sm" variant="ghost" onClick={() => exportRankingXlsx(filtered, store.weights)}><FileSpreadsheet className="mr-1 h-4 w-4" />XLSX</Button>
             <input ref={xlsxRef} type="file" accept=".xlsx" hidden
               onChange={async (e) => { const f = e.target.files?.[0]; if (!f) return;
+                if (!admin) { toast.error("Acesso negado"); e.target.value = ""; return; }
                 try { const r = await importXlsx(f);
                   if (r.lotacoes) store.setLotacoes(mergeLotacoes(store.lotacoes, r.lotacoes));
                   if (r.profiles) r.profiles.forEach(store.saveProfile);
                   toast.success(`${r.lotacoes?.length ?? 0} lotações importadas`);
-                } catch (err: any) { toast.error(err.message); } }} />
+                } catch (err: any) { toast.error(err.message); } finally { e.target.value = ""; } }} />
             <input ref={kmlRef} type="file" accept=".kml,.kmz" hidden
               onChange={async (e) => { const f = e.target.files?.[0]; if (!f) return;
+                if (!admin) { toast.error("Acesso negado"); e.target.value = ""; return; }
                 try { const g = await importKmlOrKmz(f); store.setKml(g); toast.success("KML importado"); }
-                catch (err: any) { toast.error(err.message); } }} />
+                catch (err: any) { toast.error(err.message); } finally { e.target.value = ""; } }} />
           </div>
         </div>
       </header>
+
+      <AdminGate open={gateOpen} onClose={() => { setGateOpen(false); setPendingAction(null); }}
+        onSuccess={() => { refresh(); if (pendingAction === "xlsx") setTimeout(() => xlsxRef.current?.click(), 50);
+          else if (pendingAction === "kml") setTimeout(() => kmlRef.current?.click(), 50); setPendingAction(null); }} />
 
       <div className="container grid gap-6 py-6 lg:grid-cols-[300px_1fr]">
         {/* Sidebar */}
