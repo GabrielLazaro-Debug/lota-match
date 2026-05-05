@@ -12,7 +12,7 @@ import LotacaoCard from "@/components/LotacaoCard";
 import LotacaoDetail from "@/components/LotacaoDetail";
 import CompareDialog from "@/components/CompareDialog";
 import BrazilMap from "@/components/BrazilMap";
-import { Download, FileSpreadsheet, MapPinned, Search, Settings, Shield, Upload, Layers, GitCompare, X, Lock, LogOut, ShieldCheck } from "lucide-react";
+import { Download, FileSpreadsheet, MapPinned, Search, Settings, Shield, Upload, Layers, GitCompare, X, Lock, LogOut, ShieldCheck, Home } from "lucide-react";
 import { importKmlOrKmz, importXlsx, mergeLotacoes } from "@/lib/importer";
 import { toast } from "sonner";
 import { exportRankingPdf, exportRankingXlsx } from "@/lib/exporters";
@@ -87,6 +87,9 @@ export default function Dashboard() {
             <Link to="/onboarding" className="ml-1 underline hover:text-primary">editar</Link>
           </div>
           <div className="ml-auto flex items-center gap-2">
+            <Button asChild size="sm" variant="ghost" title="Voltar para a tela inicial">
+              <Link to="/"><Home className="mr-1 h-4 w-4" />Início</Link>
+            </Button>
             <Button size="sm" variant={admin ? "secondary" : "ghost"}
               onClick={() => admin ? (endSession(), refresh(), toast.success("Sessão admin encerrada")) : setGateOpen(true)}
               title={admin ? "Encerrar sessão admin" : "Entrar como administrador"}>
