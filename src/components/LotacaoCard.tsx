@@ -45,7 +45,9 @@ export default function LotacaoCard({ lot, score, rank, maxScore, onClick, selec
         <Stat icon={Wallet} v={lot.custo_vida} label="C.Vida" />
         {lot.aeroporto === 1 && <Badge icon={Plane}>Aeroporto</Badge>}
         {lot.voo_direto_fortaleza === 1 && <Badge icon={Plane} tone="accent">Voo direto FOR</Badge>}
-        {(lot.adfron_pontos ?? 0) > 0 && <Badge icon={Mountain} tone="warning">ADFRON</Badge>}
+        <Badge icon={Mountain} tone={Number(lot.adfron_flag) === 1 ? "warning" : "default"}>
+          ADFRON: {Number(lot.adfron_flag) === 1 ? `Sim (+${lot.adfron_pontos ?? 0})` : "Não"}
+        </Badge>
         {lot.distancia_origem_km != null && (
           <Badge icon={MapPin}>{lot.distancia_origem_km.toLocaleString("pt-BR")} km de você</Badge>
         )}
