@@ -1,0 +1,2510 @@
+{
+  "SBFL": {
+    "SCEL": true,
+    "SBPA": true,
+    "SUMU": true,
+    "SABE": true,
+    "SBSP": true,
+    "SBGL": true,
+    "SPJC": true,
+    "SBGR": true,
+    "SACO": true,
+    "SAAR": true,
+    "SAEZ": true,
+    "LPPT": true,
+    "SBKP": true,
+    "SBNF": true,
+    "SKBO": true,
+    "SBCF": true,
+    "SBSJ": true,
+    "SBBR": true,
+    "SBFI": true,
+    "SBCT": true,
+    "MPTO": true,
+    "SBCH": true,
+    "SASA": true,
+    "SANT": true,
+    "SBRF": true,
+    "SBPS": true,
+    "SBUL": true,
+    "SBJV": true,
+    "SGAS": true,
+    "SBBV": true,
+    "SANU": true,
+    "TNCA": true,
+    "SBEG": true,
+    "SEQM": true
+  },
+  "SCEL": {
+    "SUMU": true,
+    "SAEZ": true,
+    "SBFL": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SEQM": true,
+    "KMIA": true,
+    "SBKP": true,
+    "SBCT": true,
+    "SPJC": true,
+    "SBPA": true,
+    "SBRF": true,
+    "SBBR": true,
+    "SBFZ": true,
+    "SBFI": true,
+    "SAME": true,
+    "SBCF": true,
+    "LEMD": true,
+    "SBSV": true,
+    "SKBO": true,
+    "MPTO": true,
+    "SDSC": true
+  },
+  "SUMU": {
+    "SBSV": true,
+    "SCEL": true,
+    "SBGL": true,
+    "SBFL": true,
+    "SBGR": true,
+    "SBKP": true,
+    "SBFZ": true,
+    "SAEZ": true,
+    "SEQM": true,
+    "SBCT": true,
+    "SBRF": true,
+    "SDSC": true,
+    "SBCF": true,
+    "SBCB": true,
+    "SBMO": true,
+    "SBPS": true,
+    "SKBO": true,
+    "SBSG": true,
+    "MDPC": true
+  },
+  "SBSV": {
+    "SUMU": true,
+    "SAEZ": true,
+    "SBGR": true,
+    "SBPA": true,
+    "SBGL": true,
+    "SBCF": true,
+    "SBCT": true,
+    "SBRF": true,
+    "SBCY": true,
+    "SBBR": true,
+    "SBSP": true,
+    "SBMO": true,
+    "SNCL": true,
+    "SBFZ": true,
+    "SDLO": true,
+    "LPFR": true,
+    "LPPT": true,
+    "SBSG": true,
+    "SBRJ": true,
+    "SBEG": true,
+    "SBGO": true,
+    "SBKP": true,
+    "SBPS": true,
+    "SBJP": true,
+    "SBAR": true,
+    "MPTO": true,
+    "SBKG": true,
+    "SBVT": true,
+    "SBPL": true,
+    "SBSL": true,
+    "SBUL": true,
+    "SABE": true,
+    "SBSR": true,
+    "SBRP": true,
+    "SBLE": true,
+    "SNBR": true,
+    "SBIL": true,
+    "SBVC": true,
+    "LFPG": true,
+    "SNGI": true,
+    "SBBH": true,
+    "LPPR": true,
+    "LEMD": true,
+    "SCEL": true,
+    "SBBE": true
+  },
+  "SBGL": {
+    "SUMU": true,
+    "SBGR": true,
+    "SBRF": true,
+    "SBBV": true,
+    "SBPA": true,
+    "SBCF": true,
+    "SBBR": true,
+    "SBVT": true,
+    "SCEL": true,
+    "SBCT": true,
+    "KMIA": true,
+    "SBSV": true,
+    "SAEZ": true,
+    "SACO": true,
+    "SBNF": true,
+    "SBSP": true,
+    "KDFW": true,
+    "SABE": true,
+    "SAAR": true,
+    "KJFK": true,
+    "SBFI": true,
+    "SBIL": true,
+    "SBGO": true,
+    "SBBE": true,
+    "SBJP": true,
+    "SKBO": true,
+    "SBFL": true,
+    "SBCY": true,
+    "SBMO": true,
+    "SBFZ": true,
+    "ELLX": true,
+    "SBKP": true,
+    "SBPS": true,
+    "SPJC": true,
+    "SBSG": true,
+    "SBEG": true,
+    "LPPT": true,
+    "SAME": true,
+    "LPPR": true,
+    "SGAS": true,
+    "SBSJ": true,
+    "SBAR": true,
+    "KATL": true,
+    "MPTO": true,
+    "EHAM": true,
+    "LFPG": true,
+    "SBSL": true,
+    "OMDB": true,
+    "LEMD": true,
+    "KIAH": true,
+    "KSFO": true,
+    "KORD": true,
+    "KEWR": true,
+    "SBRJ": true,
+    "SANT": true,
+    "EDDF": true,
+    "CYYZ": true,
+    "LIRF": true,
+    "SLVR": true,
+    "EGLL": true,
+    "SBSR": true,
+    "SDCO": true,
+    "SBCG": true,
+    "SLAL": true,
+    "SARI": true,
+    "CYUL": true,
+    "TNCC": true,
+    "BIKF": true,
+    "KFLL": true,
+    "SEQM": true,
+    "SBPV": true,
+    "KSAV": true,
+    "SEGU": true,
+    "SBTC": true,
+    "KIAD": true,
+    "MDSD": true
+  },
+  "SAEZ": {
+    "SBSV": true,
+    "SCEL": true,
+    "SBFL": true,
+    "SBFZ": true,
+    "SBGL": true,
+    "SBMO": true,
+    "SBSG": true,
+    "SBPS": true,
+    "SBRF": true,
+    "SBCF": true,
+    "SKBO": true,
+    "SBKP": true,
+    "SBGR": true,
+    "SBBR": true,
+    "SABE": true,
+    "EDDF": true,
+    "SPJC": true,
+    "LEMD": true,
+    "LIRF": true,
+    "MDSD": true,
+    "MDPC": true,
+    "SBCB": true,
+    "SBPA": true,
+    "SBCT": true,
+    "DNAA": true,
+    "EGSS": true
+  },
+  "SBGR": {
+    "SBFL": true,
+    "SBGL": true,
+    "SBEG": true,
+    "FAOR": true,
+    "FACT": true,
+    "SBBV": true,
+    "SBSV": true,
+    "SBSR": true,
+    "SBBR": true,
+    "SBCH": true,
+    "OTHH": true,
+    "GMMN": true,
+    "SBFZ": true,
+    "SUMU": true,
+    "SBJU": true,
+    "SBRF": true,
+    "SBCF": true,
+    "SABE": true,
+    "SBPA": true,
+    "SKBO": true,
+    "KMIA": true,
+    "SBVC": true,
+    "KJFK": true,
+    "KDFW": true,
+    "SLVR": true,
+    "TNCA": true,
+    "SBVT": true,
+    "OMDB": true,
+    "SAAR": true,
+    "SBIL": true,
+    "KFLL": true,
+    "MDPC": true,
+    "SBTE": true,
+    "SBBE": true,
+    "SBMO": true,
+    "SBCG": true,
+    "SBJP": true,
+    "SBCY": true,
+    "SKPE": true,
+    "SBJE": true,
+    "SBGO": true,
+    "SBAR": true,
+    "SBMG": true,
+    "SBPS": true,
+    "SBCT": true,
+    "SPJC": true,
+    "SBPL": true,
+    "SBPJ": true,
+    "SPQU": true,
+    "SBSI": true,
+    "SBFI": true,
+    "SBSG": true,
+    "SBSL": true,
+    "LPPT": true,
+    "LPPR": true,
+    "GVAC": true,
+    "SBKP": true,
+    "SBNF": true,
+    "TFFF": true,
+    "SBRP": true,
+    "TLPL": true,
+    "SBSP": true,
+    "SBPV": true,
+    "SAEZ": true,
+    "KATL": true,
+    "MPTO": true,
+    "EHAM": true,
+    "SBPF": true,
+    "SEQM": true,
+    "LSZH": true,
+    "SULS": true,
+    "SBCA": true,
+    "SGAS": true,
+    "SAME": true,
+    "SACO": true,
+    "LEMD": true,
+    "SBRJ": true,
+    "KIAH": true,
+    "KEWR": true,
+    "KORD": true,
+    "KIAD": true,
+    "LFPG": true,
+    "SCEL": true,
+    "MMMX": true,
+    "FNBJ": true,
+    "SBJA": true,
+    "SBUL": true,
+    "SBLO": true,
+    "SBIZ": true,
+    "SBJV": true,
+    "SBFN": true,
+    "SBPK": true,
+    "SBDO": true,
+    "SBMQ": true,
+    "LIMC": true,
+    "EDDF": true,
+    "EGLL": true,
+    "KLAX": true,
+    "LEBL": true,
+    "LIRF": true,
+    "KMCO": true,
+    "KBOS": true,
+    "SBUR": true,
+    "SBTC": true,
+    "SDSC": true,
+    "EDDM": true,
+    "CYYZ": true,
+    "CYUL": true,
+    "SBMK": true,
+    "LTFM": true,
+    "SBDB": true,
+    "GOBD": true,
+    "SBRB": true,
+    "LEZG": true,
+    "HAAB": true,
+    "EBLG": true,
+    "SBCX": true,
+    "SBAE": true,
+    "SBSJ": true,
+    "DIAP": true,
+    "KSLC": true,
+    "LETL": true,
+    "SKRG": true,
+    "SBNM": true,
+    "SVMI": true,
+    "SDCO": true,
+    "KAUS": true
+  },
+  "SBFZ": {
+    "SBBE": true,
+    "SBGL": true,
+    "SBRF": true,
+    "SBGR": true,
+    "SAEZ": true,
+    "SBSP": true,
+    "KMCO": true,
+    "KMIA": true,
+    "SBSV": true,
+    "SBBR": true,
+    "SBEG": true,
+    "LPFR": true,
+    "LPPT": true,
+    "SBSJ": true,
+    "SBCF": true,
+    "SBFI": true,
+    "SUMU": true,
+    "SBSR": true,
+    "SBRP": true,
+    "SBKP": true,
+    "LFPG": true,
+    "SBUL": true,
+    "SOCA": true,
+    "SBVT": true,
+    "LEMD": true,
+    "SBTE": true,
+    "SBSL": true,
+    "SBJU": true,
+    "SBSG": true,
+    "SBPB": true,
+    "SCEL": true,
+    "GVAC": true,
+    "SBMO": true,
+    "SBMQ": true,
+    "SDSC": true,
+    "SBCT": true,
+    "SBFL": true,
+    "SABE": true
+  },
+  "SBBE": {
+    "SVMI": true,
+    "SBEG": true,
+    "SMJP": true,
+    "KMIA": true,
+    "SKBO": true,
+    "SBGR": true,
+    "SBGL": true,
+    "LPPT": true,
+    "SBMQ": true,
+    "SBCJ": true,
+    "SDOW": true,
+    "SBBR": true,
+    "SBCF": true,
+    "SBKP": true,
+    "SBPJ": true,
+    "SBMD": true,
+    "SNSM": true,
+    "SBTU": true,
+    "SNVS": true,
+    "SNMZ": true,
+    "SNEB": true,
+    "SBMA": true,
+    "SBFZ": true,
+    "SBRF": true,
+    "SOCA": true,
+    "SBSL": true,
+    "SBSN": true,
+    "KFLL": true,
+    "SBOI": true,
+    "SBHT": true,
+    "SBCY": true,
+    "GVAC": true,
+    "SBPA": true,
+    "SBSR": true,
+    "SBSV": true,
+    "SBCT": true
+  },
+  "SVMI": {
+    "SBFZ": true,
+    "SEQM": true,
+    "SBEG": true,
+    "SKBO": true,
+    "SKRG": true,
+    "SBGR": true
+  },
+  "SBRF": {
+    "SBGR": true,
+    "LPPT": true,
+    "SBGL": true,
+    "SBFZ": true,
+    "SACO": true,
+    "SBSV": true,
+    "SBSP": true,
+    "SABE": true,
+    "SBFN": true,
+    "SAEZ": true,
+    "GVAC": true,
+    "SNRU": true,
+    "SBBR": true,
+    "SNHS": true,
+    "SNTS": true,
+    "SNGN": true,
+    "SBJU": true,
+    "SBEG": true,
+    "SBFI": true,
+    "SBGO": true,
+    "SBCT": true,
+    "SBKP": true,
+    "SBAE": true,
+    "SBPA": true,
+    "SBSR": true,
+    "SBCF": true,
+    "SBBE": true,
+    "SBVT": true,
+    "SBRP": true,
+    "SBAR": true,
+    "SBSG": true,
+    "SBUL": true,
+    "SBPL": true,
+    "SBSL": true,
+    "LEMD": true,
+    "LPPR": true,
+    "KMCO": true,
+    "SUMU": true,
+    "SBMO": true,
+    "SBJP": true,
+    "SBKG": true,
+    "SBFL": true,
+    "SBTE": true,
+    "SCEL": true,
+    "SNAB": true,
+    "SBMS": true,
+    "SBUR": true,
+    "SBPS": true,
+    "SBTC": true,
+    "LIRF": true
+  },
+  "SBCY": {
+    "SBBR": true,
+    "SBSP": true,
+    "SBSV": true,
+    "SBGR": true,
+    "SBGL": true,
+    "SSOU": true,
+    "SBSI": true,
+    "SBBW": true,
+    "SBEG": true,
+    "SBSR": true,
+    "SBPV": true,
+    "SBKP": true,
+    "SBCF": true,
+    "SBSO": true,
+    "SBGO": true,
+    "SBCG": true,
+    "SBVH": true,
+    "SBUL": true,
+    "SBRP": true
+  },
+  "LPPT": {
+    "SBRF": true,
+    "SBFZ": true,
+    "SBSG": true,
+    "SBSV": true,
+    "SBBE": true,
+    "SBBR": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBCF": true,
+    "SBFL": true,
+    "SBPA": true,
+    "SBKP": true,
+    "GVAC": true
+  },
+  "SBSP": {
+    "SBVT": true,
+    "SBCF": true,
+    "SBRF": true,
+    "SBUL": true,
+    "SBCX": true,
+    "SBRJ": true,
+    "SBGL": true,
+    "SBNF": true,
+    "SBMK": true,
+    "SBSR": true,
+    "SBRP": true,
+    "SBAR": true,
+    "SBFZ": true,
+    "SBAU": true,
+    "SBBR": true,
+    "SBCY": true,
+    "SBGO": true,
+    "SBJP": true,
+    "SBPS": true,
+    "SBCT": true,
+    "SBFL": true,
+    "SBFI": true,
+    "SBNM": true,
+    "SBIL": true,
+    "SBSG": true,
+    "SBCG": true,
+    "SBCN": true,
+    "SBDN": true,
+    "SBSV": true,
+    "SBMG": true,
+    "SBMO": true,
+    "SBPA": true,
+    "SBGR": true,
+    "SBJV": true,
+    "SBCH": true,
+    "SBLO": true,
+    "SBDB": true,
+    "SNCP": true,
+    "SBZM": true,
+    "SBPK": true,
+    "SBTC": true,
+    "SBKP": true,
+    "SBTE": true,
+    "SBSL": true,
+    "SBUR": true,
+    "SDSC": true,
+    "SBCA": true
+  },
+  "SBPS": {
+    "SBSP": true,
+    "SBCF": true,
+    "SBGR": true,
+    "SBRJ": true,
+    "SBBR": true,
+    "SAEZ": true,
+    "SBGL": true,
+    "SBRP": true,
+    "SBKP": true,
+    "SBSV": true,
+    "SBCA": true,
+    "SBUL": true,
+    "SBDN": true,
+    "SBGO": true,
+    "SBAE": true,
+    "SBSR": true,
+    "SABE": true,
+    "SBVT": true,
+    "SBCT": true,
+    "SBRF": true,
+    "SBMO": true,
+    "SACO": true,
+    "SARI": true,
+    "SBJD": true
+  },
+  "SBPA": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBSV": true,
+    "SBSP": true,
+    "SPJC": true,
+    "LPPT": true,
+    "MSLP": true,
+    "SBCT": true,
+    "SBKP": true,
+    "SBBR": true,
+    "SBVT": true,
+    "SABE": true,
+    "SBCF": true,
+    "SBFL": true,
+    "MPTO": true,
+    "SCEL": true,
+    "SBRF": true,
+    "SBSM": true,
+    "SBPK": true,
+    "SBUG": true,
+    "SBNM": true,
+    "SAEZ": true,
+    "SBBE": true,
+    "SBRP": true,
+    "SBLO": true,
+    "SBSJ": true,
+    "SBPF": true,
+    "SACO": true,
+    "SBCH": true,
+    "SULS": true
+  },
+  "SBBR": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBEG": true,
+    "SBJP": true,
+    "MMUN": true,
+    "KMIA": true,
+    "SKBO": true,
+    "SBCY": true,
+    "SBMO": true,
+    "SBSV": true,
+    "SBSP": true,
+    "SPJC": true,
+    "SBFZ": true,
+    "SBBV": true,
+    "SBPS": true,
+    "LPPT": true,
+    "SBPJ": true,
+    "SBTE": true,
+    "KMCO": true,
+    "SBRB": true,
+    "SBKP": true,
+    "SBGO": true,
+    "SBPA": true,
+    "SBVT": true,
+    "SBSL": true,
+    "SBRF": true,
+    "SBSG": true,
+    "SBCT": true,
+    "SAEZ": true,
+    "SBCF": true,
+    "SBJD": true,
+    "SBIL": true,
+    "MPTO": true,
+    "SBPV": true,
+    "SBMA": true,
+    "SBRJ": true,
+    "SBFI": true,
+    "SBFL": true,
+    "SBBE": true,
+    "SBIZ": true,
+    "SBAR": true,
+    "SCEL": true,
+    "SBSI": true,
+    "SBCG": true,
+    "SBMQ": true,
+    "SBSN": true,
+    "SBRP": true,
+    "MROC": true,
+    "SBCH": true,
+    "SEQM": true,
+    "KAUS": true,
+    "SBUL": true,
+    "SUMU": true,
+    "LTFM": true,
+    "EBLG": true,
+    "SABE": true
+  },
+  "SBEG": {
+    "SBBR": true,
+    "SBGR": true,
+    "SBBE": true,
+    "KMIA": true,
+    "SBPV": true,
+    "SKBO": true,
+    "SBGL": true,
+    "SBFZ": true,
+    "SWYN": true,
+    "SBMY": true,
+    "SEQM": true,
+    "SKRG": true,
+    "SWBC": true,
+    "SWMW": true,
+    "SBPJ": true,
+    "SWLB": true,
+    "KMCO": true,
+    "MPTO": true,
+    "SBRF": true,
+    "SBKP": true,
+    "SBRB": true,
+    "SBBV": true,
+    "SBIH": true,
+    "SBSN": true,
+    "SBTB": true,
+    "SBTT": true,
+    "SWPI": true,
+    "SAEZ": true,
+    "SUMU": true,
+    "TNCC": true,
+    "SBCF": true,
+    "SBTF": true,
+    "SBUY": true,
+    "SBCT": true,
+    "SBUA": true,
+    "SYCJ": true,
+    "KATL": true,
+    "SBMO": true,
+    "SBCY": true,
+    "SBVT": true,
+    "SGAS": true,
+    "SVMI": true,
+    "SBMA": true,
+    "SWBR": true,
+    "SBSV": true,
+    "MDSD": true,
+    "SBGO": true,
+    "SCCF": true
+  },
+  "FAOR": {
+    "SBGR": true
+  },
+  "FACT": {
+    "SBGR": true
+  },
+  "SBCT": {
+    "SBPA": true,
+    "SBGL": true,
+    "SBSV": true,
+    "SBGR": true,
+    "SEQM": true,
+    "SBSP": true,
+    "SPJC": true,
+    "SBKP": true,
+    "SBFL": true,
+    "SBGO": true,
+    "SSGY": true,
+    "SSUV": true,
+    "SSVL": true,
+    "SSUM": true,
+    "SBMO": true,
+    "SBRF": true,
+    "SBCF": true,
+    "SBFI": true,
+    "SBCA": true,
+    "SABE": true,
+    "SAEZ": true,
+    "SCEL": true,
+    "SBMG": true,
+    "SBPO": true,
+    "SGAS": true,
+    "SUMU": true,
+    "SBRP": true,
+    "SBVT": true,
+    "SBLO": true,
+    "SBBR": true,
+    "SBJD": true,
+    "SBBH": true,
+    "SDCO": true,
+    "SBCH": true,
+    "SBSJ": true,
+    "SBBV": true,
+    "SBPJ": true,
+    "KMIA": true,
+    "SBSR": true
+  },
+  "SBCF": {
+    "SBGL": true,
+    "SBUL": true,
+    "SBPS": true,
+    "SBGR": true,
+    "SBSP": true,
+    "SBCJ": true,
+    "SABE": true,
+    "SBSV": true,
+    "SBMO": true,
+    "LPPT": true,
+    "SBKP": true,
+    "SKBO": true,
+    "SNSS": true,
+    "SNDV": true,
+    "SBAX": true,
+    "SNPD": true,
+    "SBJR": true,
+    "SNLN": true,
+    "SNJM": true,
+    "SNTO": true,
+    "SBVG": true,
+    "SBBR": true,
+    "SNZR": true,
+    "SBSG": true,
+    "SBMQ": true,
+    "SBAR": true,
+    "SBMK": true,
+    "SBLE": true,
+    "SCEL": true,
+    "MDPC": true,
+    "MPTO": true,
+    "SBPA": true,
+    "SBFL": true,
+    "SBJE": true,
+    "SBJP": true,
+    "SBNF": true,
+    "SBFZ": true,
+    "SBIL": true,
+    "SBVT": true,
+    "SBRF": true,
+    "SBTC": true,
+    "SBCY": true,
+    "SBIP": true,
+    "SBTE": true,
+    "SBCT": true,
+    "SBRJ": true,
+    "SBVC": true,
+    "SNBR": true,
+    "SBGV": true,
+    "SBFI": true,
+    "SBPV": true,
+    "SBPJ": true,
+    "SBMA": true,
+    "SBUR": true,
+    "SBBE": true,
+    "SBRP": true,
+    "SBSR": true,
+    "SBEG": true,
+    "SEQM": true,
+    "SBSL": true,
+    "KMCO": true,
+    "SNGI": true,
+    "SBRB": true,
+    "SBGO": true,
+    "SBBH": true,
+    "SBIZ": true,
+    "SBKG": true,
+    "KAEX": true,
+    "SBPL": true,
+    "TNCC": true,
+    "SBAE": true,
+    "SBSJ": true,
+    "GVAC": true,
+    "KMIA": true,
+    "SBJD": true,
+    "SUMU": true
+  },
+  "SBBV": {
+    "SBBR": true,
+    "SBCT": true,
+    "SBPJ": true,
+    "SBEG": true,
+    "SBGR": true,
+    "SBCY": true,
+    "SBFL": true,
+    "SVPR": true
+  },
+  "SBSR": {
+    "SBGR": true,
+    "SBSP": true,
+    "SBJD": true,
+    "SBSV": true,
+    "SBFZ": true,
+    "SBJP": true,
+    "SBSG": true,
+    "SBMO": true,
+    "SBKP": true,
+    "SBRF": true,
+    "SBPS": true,
+    "SBCF": true,
+    "SBCY": true,
+    "SBBR": true,
+    "SBGL": true,
+    "SDCO": true,
+    "SBCT": true,
+    "SBBE": true,
+    "SBBW": true
+  },
+  "SBUL": {
+    "SBCF": true,
+    "SBBR": true,
+    "SBSV": true,
+    "SBPS": true,
+    "SBSP": true,
+    "SBRF": true,
+    "SBMO": true,
+    "SBSG": true,
+    "SBJP": true,
+    "SBFZ": true,
+    "SBKP": true,
+    "SBGR": true,
+    "SBJD": true,
+    "SBBP": true,
+    "SBRP": true,
+    "SBMK": true,
+    "SBLO": true
+  },
+  "SBCH": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBSP": true,
+    "SBFL": true,
+    "SBKP": true,
+    "SBCT": true,
+    "SBCF": true,
+    "SBJD": true,
+    "SBPA": true
+  },
+  "SBVT": {
+    "SBGL": true,
+    "SBSP": true,
+    "SBGR": true,
+    "SBBR": true,
+    "SBFL": true,
+    "SKBO": true,
+    "SBRF": true,
+    "SBKP": true,
+    "SBSJ": true,
+    "SBSV": true,
+    "SBCF": true,
+    "SBRP": true,
+    "SKRG": true,
+    "SBRJ": true,
+    "SBCT": true
+  },
+  "SBNF": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBSP": true,
+    "SEQM": true,
+    "SKBO": true,
+    "SBKP": true,
+    "SBCF": true,
+    "SBLO": true,
+    "SBRP": true,
+    "SBCT": true
+  },
+  "SACO": {
+    "SBRF": true,
+    "SBFL": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBCT": true,
+    "SBMO": true,
+    "MDPC": true,
+    "SBPS": true,
+    "SCEL": true
+  },
+  "SBMO": {
+    "SBGR": true,
+    "SBBR": true,
+    "SBGL": true,
+    "SBSP": true,
+    "SBSV": true,
+    "SBSG": true,
+    "SBCF": true,
+    "SAEZ": true,
+    "SBSL": true,
+    "SBPL": true,
+    "SBCT": true,
+    "SBAE": true,
+    "SBDN": true,
+    "SBCA": true,
+    "SBLO": true,
+    "SBSR": true,
+    "SBRP": true,
+    "SBKP": true,
+    "SBGO": true,
+    "SBUL": true,
+    "SBRF": true,
+    "SACO": true,
+    "SAAR": true,
+    "SABE": true,
+    "LPPR": true,
+    "LPPT": true,
+    "SBJP": true,
+    "SBVT": true
+  },
+  "KMIA": {
+    "SBEG": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBFZ": true,
+    "SBBE": true,
+    "SBBR": true,
+    "SBKP": true,
+    "EHAM": true,
+    "EHBK": true,
+    "SBSJ": true,
+    "SGES": true,
+    "SBCF": true,
+    "SBCT": true,
+    "SBVT": true,
+    "SGAS": true,
+    "SBFL": true,
+    "SUMU": true,
+    "SKBO": true,
+    "SBPJ": true,
+    "SAEZ": true,
+    "SEQM": true,
+    "KMCO": true,
+    "SLVR": true,
+    "KMZJ": true,
+    "SYCJ": true,
+    "EBLG": true,
+    "SBPV": true
+  },
+  "SBJU": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBRF": true,
+    "SBKP": true,
+    "SBFZ": true,
+    "SNAB": true,
+    "SBCF": true,
+    "SBPL": true
+  },
+  "GMMN": {
+    "SBGR": true,
+    "SBBR": true
+  },
+  "SBAR": {
+    "SBSP": true,
+    "SBGR": true,
+    "SBGL": true,
+    "SBSV": true,
+    "SBCF": true,
+    "SBRF": true,
+    "SBKP": true,
+    "SBTE": true,
+    "SBBR": true
+  },
+  "SKBO": {
+    "SBGR": true,
+    "SBCT": true,
+    "SBEG": true,
+    "SBBR": true,
+    "SBBE": true,
+    "SBGL": true,
+    "SBKP": true,
+    "KMIA": true,
+    "SEQM": true,
+    "SBCF": true,
+    "SDSC": true,
+    "MPTO": true
+  },
+  "SABE": {
+    "SBGR": true,
+    "SBFL": true,
+    "SBJP": true,
+    "SBGL": true,
+    "SBRF": true,
+    "SBCF": true,
+    "SBKP": true,
+    "SBSV": true,
+    "SBPA": true,
+    "SBSG": true,
+    "SULS": true,
+    "SBCT": true,
+    "SBCB": true,
+    "SBPS": true,
+    "SGAS": true,
+    "SCEL": true,
+    "SAEZ": true,
+    "SBBR": true,
+    "SBFZ": true
+  },
+  "MPTO": {
+    "EHAM": true,
+    "SBEG": true,
+    "SBBR": true,
+    "SBFL": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBSV": true,
+    "SBCF": true,
+    "SBPA": true,
+    "KLAX": true,
+    "KORD": true,
+    "SCEL": true,
+    "SPJC": true,
+    "EBLG": true,
+    "KAUS": true,
+    "EBBR": true,
+    "SBKP": true
+  },
+  "SBJP": {
+    "SBSP": true,
+    "SBBR": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBTE": true,
+    "SBPS": true,
+    "SBCF": true,
+    "SBSV": true,
+    "SBCA": true,
+    "SBSR": true,
+    "SABE": true,
+    "SBGO": true,
+    "SBRP": true,
+    "SBKP": true,
+    "SBUL": true,
+    "SBRF": true,
+    "SBFN": true,
+    "SBVT": true,
+    "SBSJ": true
+  },
+  "SBRJ": {
+    "SBSP": true,
+    "SBPS": true,
+    "SBSV": true,
+    "SBGR": true,
+    "SBBR": true,
+    "SBKP": true,
+    "SBCF": true,
+    "SBGL": true,
+    "SBVT": true,
+    "SBCT": true,
+    "SDSC": true,
+    "SBCP": true,
+    "SBJD": true,
+    "SBRP": true
+  },
+  "KDFW": {
+    "SBGL": true,
+    "SBGR": true,
+    "SBKP": true
+  },
+  "OTHH": {
+    "SBGR": true,
+    "DNMM": true,
+    "EBLG": true,
+    "VTBS": true,
+    "VOMM": true
+  },
+  "SBMG": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBKP": true,
+    "SBSP": true,
+    "SBCT": true,
+    "SBCF": true,
+    "SBLO": true,
+    "SBCA": true
+  },
+  "SBPV": {
+    "SBEG": true,
+    "SBBR": true,
+    "SBMK": true,
+    "SBCY": true,
+    "SBCF": true,
+    "SBGR": true,
+    "SBRP": true,
+    "SBKP": true,
+    "SAEZ": true
+  },
+  "KJFK": {
+    "SBGR": true,
+    "SBGL": true,
+    "KMIA": true,
+    "SBKP": true
+  },
+  "SBRP": {
+    "SBSP": true,
+    "SBPS": true,
+    "SBBR": true,
+    "SBJD": true,
+    "SBKP": true,
+    "SBJP": true,
+    "SBSG": true,
+    "SBFZ": true,
+    "SBSV": true,
+    "SBMO": true,
+    "SBRF": true,
+    "SBCF": true,
+    "SBUL": true,
+    "SBGR": true,
+    "SBSR": true
+  },
+  "TNCA": {
+    "SBGR": true
+  },
+  "SLVR": {
+    "SBGR": true,
+    "SBCT": true,
+    "SBGL": true,
+    "SBKP": true,
+    "SKBO": true,
+    "SEGU": true
+  },
+  "SAAR": {
+    "SBGL": true,
+    "SBGR": true,
+    "SBFL": true,
+    "SACO": true,
+    "SBCB": true,
+    "SBMO": true,
+    "SBCF": true
+  },
+  "MMUN": {
+    "SBBR": true,
+    "SBUL": true
+  },
+  "KFLL": {
+    "KMIA": true,
+    "SBKP": true,
+    "SBBE": true,
+    "KMCO": true
+  },
+  "SMJP": {
+    "SBBE": true
+  },
+  "SBAU": {
+    "SBSP": true,
+    "SBKP": true,
+    "SBPA": true
+  },
+  "SBPL": {
+    "SBGR": true,
+    "SBMO": true,
+    "SBSV": true,
+    "SBRF": true,
+    "SBKP": true
+  },
+  "SEQM": {
+    "MPTO": true,
+    "KMIA": true,
+    "SKBQ": true,
+    "SPSO": true,
+    "SBBE": true,
+    "SBKP": true,
+    "MMSM": true,
+    "SCEL": true,
+    "SDSC": true,
+    "KLAX": true
+  },
+  "MDPC": {
+    "SBGR": true,
+    "KMCO": true,
+    "SAEZ": true,
+    "SACO": true,
+    "SUMU": true
+  },
+  "KMCO": {
+    "SBFZ": true,
+    "SBBR": true,
+    "SBEG": true,
+    "SBPJ": true,
+    "KGWO": true,
+    "SBKP": true,
+    "SBRF": true,
+    "SBCF": true,
+    "SBGR": true,
+    "SKBO": true
+  },
+  "SBFI": {
+    "SBGL": true,
+    "SBGR": true,
+    "SBSP": true,
+    "SBVT": true,
+    "SBFZ": true,
+    "SBRF": true,
+    "SBKP": true,
+    "SBCT": true,
+    "SBCF": true,
+    "SBBR": true,
+    "SCEL": true,
+    "SBJC": true,
+    "SPJC": true,
+    "SAEZ": true,
+    "SBFL": true,
+    "SBRP": true,
+    "SKBO": true
+  },
+  "SBTE": {
+    "SBGR": true,
+    "SBBR": true,
+    "SBSL": true,
+    "SBCF": true,
+    "SBKP": true,
+    "SBRF": true,
+    "SBSP": true,
+    "SBFZ": true,
+    "SBGL": true
+  },
+  "SBCJ": {
+    "SBCF": true,
+    "SBBE": true,
+    "SDOW": true,
+    "SBSL": true
+  },
+  "SBIL": {
+    "SBGL": true,
+    "SBGR": true,
+    "SBSP": true,
+    "SBKP": true,
+    "SBCF": true,
+    "SBSV": true,
+    "SBRP": true
+  },
+  "SBKP": {
+    "SBGL": true,
+    "SBGR": true,
+    "SCEL": true,
+    "KMEM": true,
+    "TJBQ": true,
+    "TJSJ": true,
+    "ELLX": true,
+    "SBCT": true,
+    "SBSV": true,
+    "SBBR": true,
+    "SBEG": true,
+    "SVMI": true,
+    "SEQM": true,
+    "SBFL": true,
+    "SBNF": true,
+    "GVAC": true,
+    "SBRF": true,
+    "SGAS": true,
+    "SKBO": true,
+    "SBSJ": true,
+    "SBCF": true,
+    "SBPA": true,
+    "SBJR": true,
+    "SBSP": true,
+    "SIMK": true,
+    "SBAQ": true,
+    "SBRP": true,
+    "SNBA": true,
+    "SBJD": true,
+    "SPJC": true,
+    "SAEZ": true,
+    "SKRG": true,
+    "SBVT": true,
+    "SBBE": true,
+    "SBPS": true,
+    "SBSG": true,
+    "SBFI": true,
+    "SBFZ": true,
+    "SBCY": true,
+    "SBRJ": true,
+    "SBML": true,
+    "SBJP": true,
+    "SBSR": true,
+    "SBLO": true,
+    "SBDB": true,
+    "SBPP": true,
+    "SBMO": true,
+    "SBUL": true,
+    "SBIL": true,
+    "SBGO": true,
+    "SBJV": true,
+    "SBAU": true,
+    "SBCH": true,
+    "SBTE": true,
+    "SBRD": true,
+    "SBMG": true,
+    "SBZM": true,
+    "SBAR": true,
+    "SBJU": true,
+    "SBCG": true,
+    "EDDF": true,
+    "SUMU": true,
+    "SBDN": true,
+    "MMSM": true,
+    "SBPO": true,
+    "KFLL": true,
+    "KMCO": true,
+    "SBCX": true,
+    "SBAE": true,
+    "LPPT": true,
+    "LEMD": true,
+    "SBSI": true,
+    "LPPR": true,
+    "SBCA": true,
+    "SBJI": true,
+    "SBPJ": true,
+    "SBAT": true,
+    "SBPL": true,
+    "SBBH": true,
+    "SBIP": true,
+    "SSKW": true,
+    "SBVH": true,
+    "SBPF": true,
+    "SBSL": true,
+    "KMIA": true,
+    "MSLP": true,
+    "SBBV": true,
+    "KLAX": true,
+    "KORD": true,
+    "SVVA": true,
+    "LFSB": true,
+    "MPTO": true,
+    "SBCJ": true,
+    "SGES": true,
+    "GCLP": true,
+    "GMAD": true,
+    "SOCA": true,
+    "SLVR": true,
+    "SDSC": true,
+    "SBCR": true,
+    "SBTC": true,
+    "EBLG": true,
+    "KDFW": true,
+    "HKJK": true,
+    "LIRF": true
+  },
+  "SBGO": {
+    "SBSV": true,
+    "SBSP": true,
+    "SBGR": true,
+    "SBGL": true,
+    "SBBR": true,
+    "SBCF": true,
+    "SBRF": true,
+    "SBPS": true,
+    "SBJP": true,
+    "SBKP": true,
+    "SBMO": true,
+    "SBPJ": true,
+    "SBCY": true,
+    "SBVT": true,
+    "SBSG": true,
+    "SBRP": true
+  },
+  "ELLX": {
+    "SBKP": true,
+    "SBGL": true,
+    "LPPR": true
+  },
+  "SBVC": {
+    "SBGR": true,
+    "SBCF": true,
+    "SBSV": true,
+    "SBGL": true,
+    "SBIP": true
+  },
+  "OMDB": {
+    "SBGR": true,
+    "SBGL": true,
+    "DGAA": true,
+    "HUEN": true
+  },
+  "EHAM": {
+    "ELLX": true,
+    "OTHH": true,
+    "SBGL": true,
+    "SBGR": true
+  },
+  "SKPE": {
+    "SKBO": true
+  },
+  "KMEM": {
+    "SBKP": true,
+    "TJBQ": true,
+    "TJSJ": true
+  },
+  "TJBQ": {
+    "SBKP": true,
+    "KMEM": true
+  },
+  "TJSJ": {
+    "KMEM": true,
+    "SBKP": true
+  },
+  "LPPR": {
+    "SBSJ": true,
+    "SBGL": true,
+    "SBCF": true,
+    "SBGR": true,
+    "SBRF": true,
+    "SBKP": true,
+    "SBSV": true
+  },
+  "SBSJ": {
+    "ELLX": true,
+    "SEQM": true,
+    "SBKP": true,
+    "SBFL": true,
+    "SKBO": true,
+    "SBGR": true,
+    "SCEL": true,
+    "SBGP": true,
+    "SBJD": true,
+    "SBCT": true,
+    "SBGL": true,
+    "SBRF": true,
+    "SKCL": true
+  },
+  "EHBK": {
+    "ELLX": true
+  },
+  "SPJC": {
+    "SBFL": true,
+    "SBBR": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBPA": true,
+    "SBCT": true,
+    "LEMD": true,
+    "SDSC": true,
+    "SKBO": true,
+    "KLAX": true,
+    "SEQM": true,
+    "SBFI": true,
+    "SBKP": true,
+    "MTCH": true,
+    "SBPP": true
+  },
+  "SBJE": {
+    "SBGR": true,
+    "SBCF": true,
+    "SBSJ": true,
+    "SBRF": true
+  },
+  "SBNM": {
+    "SBSP": true,
+    "SBPA": true,
+    "SBCH": true,
+    "SBGR": true
+  },
+  "SBSG": {
+    "SBGL": true,
+    "LPPT": true,
+    "SBMO": true,
+    "SBSV": true,
+    "SBGR": true,
+    "SBSP": true,
+    "SAEZ": true,
+    "SBKP": true,
+    "SBCF": true,
+    "SBBR": true,
+    "SBRP": true,
+    "SABE": true,
+    "SBSR": true,
+    "SBDN": true,
+    "SBUL": true,
+    "SBRF": true,
+    "SBVT": true,
+    "SBFZ": true,
+    "SBAC": true,
+    "SBFN": true,
+    "SUMU": true
+  },
+  "SBSI": {
+    "SBGR": true,
+    "SBCY": true,
+    "SBKP": true,
+    "SBCT": true,
+    "SBBR": true,
+    "SBGL": true
+  },
+  "SBPJ": {
+    "SBGR": true,
+    "SBBR": true,
+    "SBMA": true,
+    "SBCF": true,
+    "SWGN": true,
+    "SBKP": true,
+    "SBGO": true,
+    "SBIZ": true,
+    "SBBE": true,
+    "SDSC": true
+  },
+  "DNMM": {
+    "SBGR": true,
+    "SBKP": true,
+    "SBGL": true,
+    "SBBR": true
+  },
+  "SPQU": {
+    "SPJC": true
+  },
+  "SNCL": {
+    "SBSV": true,
+    "SDLO": true
+  },
+  "SBCG": {
+    "SBSP": true,
+    "SBGR": true,
+    "SBKP": true,
+    "SBRP": true,
+    "SBCT": true,
+    "SBBR": true,
+    "SBCY": true,
+    "SBGL": true,
+    "SBDN": true,
+    "SPJC": true
+  },
+  "SBCN": {
+    "SBSP": true,
+    "SBKP": true
+  },
+  "SDLO": {
+    "SBSV": true,
+    "SNCL": true
+  },
+  "SBFN": {
+    "SBRF": true,
+    "SBGR": true,
+    "SBGL": true
+  },
+  "SBDN": {
+    "SBSP": true,
+    "SBMO": true,
+    "SBPS": true,
+    "SBSG": true,
+    "SBKP": true,
+    "SBMG": true,
+    "SBSR": true,
+    "SBRP": true
+  },
+  "LPFR": {
+    "LPPT": true
+  },
+  "SBMQ": {
+    "SBBE": true,
+    "SBCJ": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBCF": true,
+    "SBBR": true,
+    "SBSL": true,
+    "SBIZ": true,
+    "SBOI": true
+  },
+  "SBSL": {
+    "SBGR": true,
+    "SBSV": true,
+    "SBGL": true,
+    "SBRF": true,
+    "SBCF": true,
+    "SBBE": true,
+    "SBIZ": true,
+    "SBCJ": true,
+    "SBCT": true,
+    "SBRP": true,
+    "SBKP": true,
+    "SBSP": true,
+    "SBFZ": true,
+    "SBBR": true,
+    "SBPB": true
+  },
+  "SAME": {
+    "SBGL": true,
+    "SBGR": true,
+    "SCEL": true
+  },
+  "SGAS": {
+    "SBGL": true,
+    "SBKP": true,
+    "SCEL": true,
+    "SKBO": true,
+    "SBGR": true,
+    "SEQM": true,
+    "SBCT": true,
+    "SABE": true,
+    "SAEZ": true,
+    "SBFL": true,
+    "SBCF": true
+  },
+  "OMDW": {
+    "DNMM": true,
+    "GOBD": true,
+    "GMMN": true
+  },
+  "SWYN": {
+    "SBMY": true,
+    "SBEG": true
+  },
+  "SBMY": {
+    "SBEG": true,
+    "SWYN": true
+  },
+  "SBRB": {
+    "SBCZ": true,
+    "SBBR": true,
+    "SBEG": true,
+    "SBCF": true,
+    "SBGR": true,
+    "SBPV": true
+  },
+  "SBMK": {
+    "SBSP": true,
+    "SBBR": true,
+    "SBCF": true,
+    "SBGR": true
+  },
+  "SGES": {
+    "SBKP": true,
+    "SBNF": true,
+    "SBSJ": true,
+    "SEQM": true,
+    "SKBO": true
+  },
+  "GVAC": {
+    "EBBR": true,
+    "SBGL": true,
+    "SBKP": true,
+    "SBCT": true,
+    "EBLG": true,
+    "SBSJ": true,
+    "SBFL": true,
+    "SBFZ": true,
+    "DIAP": true,
+    "SBBE": true,
+    "SBGR": true,
+    "LHBP": true
+  },
+  "EBBR": {
+    "GVAC": true,
+    "EDDF": true,
+    "LEZG": true,
+    "LEMD": true,
+    "OTHH": true
+  },
+  "SBAX": {
+    "SBCF": true
+  },
+  "MSLP": {
+    "SEQM": true,
+    "KMIA": true,
+    "SKBO": true,
+    "SBKP": true
+  },
+  "EBLG": {
+    "GVAC": true,
+    "SBGR": true,
+    "EDDF": true,
+    "OTHH": true,
+    "KORD": true,
+    "HAAB": true
+  },
+  "SDSC": {
+    "SBKP": true,
+    "SEQM": true,
+    "SBGR": true,
+    "SBSP": true,
+    "SPJC": true,
+    "SKBO": true,
+    "SCEL": true,
+    "SBJD": true,
+    "SBBR": true
+  },
+  "SKRG": {
+    "KMIA": true
+  },
+  "SNGN": {
+    "SBRF": true
+  },
+  "SNRU": {
+    "SNGN": true,
+    "SBRF": true
+  },
+  "SDOW": {
+    "SBBE": true,
+    "SBCJ": true
+  },
+  "SNSS": {
+    "SBCF": true
+  },
+  "SSOU": {
+    "SBCY": true,
+    "SBVH": true
+  },
+  "SNDV": {
+    "SBCF": true,
+    "SBBH": true
+  },
+  "SNPD": {
+    "SBCF": true
+  },
+  "SBJR": {
+    "SBKP": true,
+    "SBCF": true,
+    "SBGL": true,
+    "SBBZ": true
+  },
+  "SBJV": {
+    "SBSP": true,
+    "SBKP": true,
+    "SBGR": true,
+    "SBGL": true,
+    "SBCT": true
+  },
+  "TFFF": {
+    "SBEG": true
+  },
+  "SNBA": {
+    "SBKP": true
+  },
+  "SNLN": {
+    "SBCF": true
+  },
+  "SIMK": {
+    "SNBA": true,
+    "SBKP": true,
+    "SBJD": true
+  },
+  "SNJM": {
+    "SBCF": true
+  },
+  "SBAQ": {
+    "SBKP": true
+  },
+  "SNTO": {
+    "SBCF": true
+  },
+  "SBVG": {
+    "SBCF": true
+  },
+  "SBCX": {
+    "SBGR": true,
+    "SBSP": true,
+    "SBKP": true,
+    "SBCF": true
+  },
+  "SNZR": {
+    "SBCF": true
+  },
+  "SWBC": {
+    "SBEG": true
+  },
+  "SWBR": {
+    "SBEG": true
+  },
+  "SWMW": {
+    "SWBR": true,
+    "SBEG": true
+  },
+  "SBMA": {
+    "SBBR": true,
+    "SBCF": true,
+    "SBBE": true,
+    "SBMQ": true,
+    "SBEG": true,
+    "SBGL": true
+  },
+  "SBMD": {
+    "SNMZ": true
+  },
+  "SNMZ": {
+    "SNVS": true
+  },
+  "SNVS": {
+    "SBBE": true
+  },
+  "SBSN": {
+    "SBBE": true,
+    "SBEG": true,
+    "SBTB": true,
+    "SBBR": true,
+    "SBSL": true
+  },
+  "SNSM": {
+    "SBBE": true
+  },
+  "SBTU": {
+    "SNEB": true,
+    "SBBE": true
+  },
+  "SNEB": {
+    "SBBE": true
+  },
+  "SBBW": {
+    "SBCY": true
+  },
+  "SWLB": {
+    "SBPV": true,
+    "SBEG": true
+  },
+  "SNAB": {
+    "SBRF": true,
+    "SBKG": true,
+    "SBJU": true
+  },
+  "SNHS": {
+    "SNAB": true,
+    "SBRF": true
+  },
+  "SJZA": {
+    "SBRF": true,
+    "SBJP": true
+  },
+  "SNTS": {
+    "SJZA": true,
+    "SBRF": true
+  },
+  "SSGY": {
+    "SBCT": true
+  },
+  "SBLO": {
+    "SBSP": true,
+    "SBMO": true,
+    "SBKP": true,
+    "SBNF": true,
+    "SBCA": true,
+    "SBCT": true,
+    "SBGR": true,
+    "SBRP": true,
+    "SBCH": true,
+    "SBCF": true
+  },
+  "SSUM": {
+    "SBCT": true
+  },
+  "SSVL": {
+    "SSUM": true
+  },
+  "SSUV": {
+    "SBCT": true
+  },
+  "TLPL": {
+    "SBEG": true
+  },
+  "SBCZ": {
+    "SBRB": true
+  },
+  "SBJD": {
+    "SBUL": true,
+    "SBKP": true,
+    "SBMG": true,
+    "SBRP": true,
+    "SBSJ": true,
+    "SBSR": true,
+    "SBCF": true,
+    "SBPS": true,
+    "SSBZ": true,
+    "SBMT": true,
+    "SBRJ": true,
+    "SBBR": true,
+    "SDSC": true
+  },
+  "SBBH": {
+    "SBCF": true,
+    "SBKP": true,
+    "SBSP": true,
+    "SBRF": true,
+    "SBCT": true
+  },
+  "SBGP": {
+    "SBSJ": true
+  },
+  "SBBZ": {
+    "SBJD": true
+  },
+  "SBKG": {
+    "SBRF": true,
+    "SBSV": true,
+    "SBCF": true,
+    "SBMO": true
+  },
+  "SBLE": {
+    "SBSV": true,
+    "SBCF": true
+  },
+  "KATL": {
+    "SBGL": true,
+    "SBGR": true,
+    "SBEG": true,
+    "SBKP": true
+  },
+  "SBDB": {
+    "SBSP": true,
+    "SBKP": true,
+    "SBRP": true,
+    "SBGR": true
+  },
+  "LFPG": {
+    "EHAM": true,
+    "SBGL": true,
+    "SBGR": true,
+    "SBFZ": true,
+    "SBSV": true,
+    "LSZH": true
+  },
+  "SBPF": {
+    "SBGR": true,
+    "SBKP": true
+  },
+  "SNCP": {
+    "SBSP": true
+  },
+  "DGAA": {
+    "SBGR": true
+  },
+  "SBZM": {
+    "SBSP": true,
+    "SBKP": true
+  },
+  "SBAE": {
+    "SBRF": true,
+    "SBMO": true,
+    "SBPS": true,
+    "SBKP": true,
+    "SBCF": true,
+    "SBCT": true,
+    "SBGR": true,
+    "SBSJ": true,
+    "SBBH": true
+  },
+  "SBCA": {
+    "SBPS": true,
+    "SBMO": true,
+    "SBJP": true,
+    "SBGR": true,
+    "SBCT": true,
+    "SBKP": true,
+    "SBSP": true,
+    "SBCF": true
+  },
+  "LSZH": {
+    "SBGR": true
+  },
+  "SWGN": {
+    "SBPJ": true
+  },
+  "SBPK": {
+    "SBSP": true,
+    "SBPA": true,
+    "SBGR": true,
+    "SBKP": true
+  },
+  "SULS": {
+    "SABE": true,
+    "SBGR": true,
+    "SBPA": true,
+    "SBCT": true
+  },
+  "SBTC": {
+    "SBCF": true,
+    "SBSP": true,
+    "SBGR": true,
+    "SBKP": true,
+    "SBGL": true,
+    "SBRF": true
+  },
+  "LEMD": {
+    "SBGL": true,
+    "SBGR": true,
+    "ZBAA": true,
+    "GVAC": true,
+    "SBRF": true,
+    "SBKP": true,
+    "SAEZ": true,
+    "SBFZ": true,
+    "SBSV": true,
+    "SPJC": true,
+    "SEGU": true,
+    "SUMU": true
+  },
+  "SBPP": {
+    "SBKP": true,
+    "SPJC": true
+  },
+  "LEBL": {
+    "SAEZ": true,
+    "SBGR": true
+  },
+  "KIAH": {
+    "SBGR": true,
+    "SBGL": true,
+    "KEWR": true
+  },
+  "SBIP": {
+    "SBCF": true
+  },
+  "KEWR": {
+    "SBGR": true,
+    "SBGL": true
+  },
+  "KORD": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBKP": true
+  },
+  "SNBR": {
+    "SBCF": true,
+    "SBSV": true,
+    "SBGL": true,
+    "SBBR": true
+  },
+  "KIAD": {
+    "SBGR": true,
+    "SBGL": true
+  },
+  "KSFO": {
+    "SBGL": true
+  },
+  "SBPO": {
+    "SBCT": true,
+    "SBKP": true,
+    "SBCF": true
+  },
+  "SBSM": {
+    "SBPA": true
+  },
+  "SOCA": {
+    "SBBE": true,
+    "SBFZ": true,
+    "SBKP": true,
+    "SBSJ": true
+  },
+  "SBIZ": {
+    "SBSL": true,
+    "SBCF": true,
+    "SBBR": true,
+    "SBGR": true
+  },
+  "SBIH": {
+    "SBEG": true
+  },
+  "SBUG": {
+    "SBPA": true
+  },
+  "SBRD": {
+    "SBKP": true,
+    "SBCT": true
+  },
+  "SBTB": {
+    "SBEG": true,
+    "SBSN": true
+  },
+  "SBCB": {
+    "SABE": true,
+    "SAAR": true,
+    "SAEZ": true,
+    "SBCF": true,
+    "SBGR": true
+  },
+  "SBUR": {
+    "SBCF": true,
+    "SBGR": true,
+    "SBSP": true,
+    "SBGO": true
+  },
+  "SASA": {
+    "SBFL": true
+  },
+  "SANT": {
+    "SBFL": true,
+    "SBGL": true
+  },
+  "SBSO": {
+    "SBCY": true
+  },
+  "EDDF": {
+    "SBCT": true,
+    "SBKP": true,
+    "GVAC": true,
+    "SBGR": true,
+    "SBGL": true,
+    "SAEZ": true
+  },
+  "SBHT": {
+    "SBBE": true,
+    "SBMQ": true
+  },
+  "SBTT": {
+    "SBEG": true
+  },
+  "PANC": {
+    "KMIA": true
+  },
+  "RKSI": {
+    "PANC": true
+  },
+  "KLAX": {
+    "RKSI": true,
+    "KSEA": true,
+    "SBGR": true
+  },
+  "LEZG": {
+    "GVAC": true
+  },
+  "MMSM": {
+    "SCEL": true,
+    "SPJC": true,
+    "MPTO": true,
+    "SEQM": true
+  },
+  "MMMX": {
+    "SBGR": true,
+    "SBEG": true
+  },
+  "ZBAA": {
+    "LEMD": true
+  },
+  "SBML": {
+    "SBAE": true,
+    "SBKP": true
+  },
+  "TNCC": {
+    "SBEG": true,
+    "SBCF": true,
+    "SBGL": true
+  },
+  "SNGI": {
+    "SBSV": true,
+    "SBCF": true,
+    "SBMK": true
+  },
+  "SBGV": {
+    "SBCF": true,
+    "SBIP": true
+  },
+  "SBTF": {
+    "SBEG": true
+  },
+  "SWPI": {
+    "SBEG": true
+  },
+  "SBJI": {
+    "SBKP": true
+  },
+  "SBUY": {
+    "SBEG": true
+  },
+  "SBOI": {
+    "SBBE": true
+  },
+  "SBUA": {
+    "SBBV": true,
+    "SBEG": true
+  },
+  "SSKW": {
+    "SBKP": true
+  },
+  "KSEA": {
+    "KMIA": true
+  },
+  "SKBQ": {
+    "KLAX": true
+  },
+  "FNBJ": {
+    "SBGR": true
+  },
+  "SBAT": {
+    "SBKP": true
+  },
+  "SBVH": {
+    "SBKP": true,
+    "SBCY": true
+  },
+  "SBJA": {
+    "SBGR": true,
+    "SBFL": true
+  },
+  "SBDO": {
+    "SBGR": true
+  },
+  "LIMC": {
+    "SBGR": true,
+    "SBGL": true
+  },
+  "SBPB": {
+    "SBFZ": true,
+    "SBRF": true
+  },
+  "EGLL": {
+    "SBGR": true,
+    "SBGL": true
+  },
+  "SPSO": {
+    "SBKP": true
+  },
+  "LIRF": {
+    "SBGR": true,
+    "SBGL": true,
+    "SAEZ": true
+  },
+  "KBOS": {
+    "SBGR": true,
+    "SBGL": true
+  },
+  "CYYZ": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBKP": true
+  },
+  "EDDM": {
+    "SBGR": true
+  },
+  "CYUL": {
+    "SBGR": true,
+    "SBGL": true
+  },
+  "LTFM": {
+    "SBGL": true,
+    "SBGR": true,
+    "SBKP": true,
+    "DNMM": true,
+    "GOBD": true
+  },
+  "SYCJ": {
+    "SBEG": true
+  },
+  "MDSD": {
+    "SAEZ": true,
+    "SBEG": true
+  },
+  "GOBD": {
+    "LTFM": true,
+    "SBGR": true
+  },
+  "MTCH": {
+    "SPJC": true,
+    "SOCA": true,
+    "SPQT": true
+  },
+  "SVVA": {
+    "SKBO": true
+  },
+  "NTAA": {
+    "SBKP": true
+  },
+  "KLCK": {
+    "SBKP": true,
+    "KMIA": true,
+    "TTPP": true
+  },
+  "SSBV": {
+    "LEMD": true
+  },
+  "HAAB": {
+    "SBGR": true,
+    "SBGL": true,
+    "SBKP": true,
+    "HUEN": true
+  },
+  "LMML": {
+    "GVAC": true
+  },
+  "SDCO": {
+    "SBKP": true,
+    "SBSR": true,
+    "SBCT": true,
+    "SBGR": true
+  },
+  "KSLC": {
+    "SBGR": true
+  },
+  "HUEN": {
+    "SBGL": true,
+    "SBGR": true
+  },
+  "SBMS": {
+    "SBRF": true
+  },
+  "SBAC": {
+    "SBSL": true,
+    "SBSV": true
+  },
+  "SSCE": {
+    "SBAC": true
+  },
+  "SSBZ": {
+    "SBJD": true
+  },
+  "SBMT": {
+    "SDAG": true
+  },
+  "SDAG": {
+    "SBMT": true,
+    "SBKP": true
+  },
+  "SBBP": {
+    "SBJD": true
+  },
+  "SANU": {
+    "SACO": true
+  },
+  "TTPP": {
+    "SBGR": true,
+    "SBSJ": true,
+    "SBGL": true
+  },
+  "KDAL": {
+    "MPTO": true
+  },
+  "KGSP": {
+    "SBKP": true
+  },
+  "GCLP": {
+    "OMAA": true
+  },
+  "EGPK": {
+    "SBKP": true
+  },
+  "GMAD": {
+    "OMAA": true
+  },
+  "EDHI": {
+    "GVAC": true
+  },
+  "SLCB": {
+    "SBGL": true
+  },
+  "SLAL": {
+    "SBGL": true
+  },
+  "SAZS": {
+    "SBFI": true
+  },
+  "KAEX": {
+    "SBCF": true
+  },
+  "BIKF": {
+    "SBGL": true
+  },
+  "SVPR": {
+    "SBBV": true
+  },
+  "DXXX": {
+    "SBGR": true
+  },
+  "SBCP": {
+    "SBRJ": true
+  },
+  "KAUS": {
+    "SBBR": true,
+    "KMIA": true,
+    "KIAH": true
+  },
+  "VTBS": {
+    "DNMM": true,
+    "UBBB": true
+  },
+  "EGSS": {
+    "OTHH": true
+  },
+  "DNAA": {
+    "HKJK": true
+  },
+  "HKJK": {
+    "EBBR": true
+  },
+  "VOMM": {
+    "EBLG": true
+  },
+  "SBCR": {
+    "SBKP": true
+  },
+  "SEGU": {
+    "SBGL": true,
+    "LEMD": true,
+    "SLVR": true
+  },
+  "MMMY": {
+    "SBPA": true
+  },
+  "SAMU": {
+    "SBSG": true
+  },
+  "DIAP": {
+    "DXXX": true
+  },
+  "ESGG": {
+    "GVAC": true
+  },
+  "TBPB": {
+    "SBEG": true
+  },
+  "KCLK": {
+    "TTPP": true
+  },
+  "UBBB": {
+    "GMMN": true
+  },
+  "MPPA": {
+    "SPSO": true
+  },
+  "SPQT": {
+    "SLVR": true
+  },
+  "KCWF": {
+    "SBGR": true
+  }
+}
