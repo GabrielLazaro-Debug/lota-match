@@ -1,9 +1,25 @@
-import { MapContainer, TileLayer, CircleMarker, Tooltip, GeoJSON } from "react-leaflet";
-import { useMemo } from "react";
+import { MapContainer, TileLayer, CircleMarker, Tooltip, GeoJSON, useMap } from "react-leaflet";
+import { useEffect, useMemo } from "react";
 import type { Lotacao, ScoreResult } from "@/lib/types";
 import { useStore } from "@/lib/store";
 
 interface Props { rows: { lot: Lotacao; score: ScoreResult }[]; max: number; }
+
+function MapResizeHandler({ active }: { active: boolean }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!active) return;
+
+    const frame = requestAnimationFrame(() => {
+      map.invalidateSize();
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [active, map]);
+
+  return null;
+}
 
 function colorFor(pct: number) {
   // 0..1 — red to green via primary
@@ -11,12 +27,13 @@ function colorFor(pct: number) {
   return `hsl(${h}, 80%, 55%)`;
 }
 
-export default function BrazilMap({ rows, max }: Props) {
+export default function BrazilMap({ rows, max, active = true }: Props & { active?: boolean }) {
   const { userKmlGeoJson, showLayerLot, showLayerKml, origem } = useStore();
   const points = useMemo(() => rows.filter((r) => r.lot.lat != null && r.lot.lon != null), [rows]);
 
   return (
     <MapContainer center={[-14.5, -52]} zoom={4} className="h-full min-h-[500px] w-full" scrollWheelZoom>
+      <MapResizeHandler active={active} />
       <TileLayer attribution="© OSM" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {showLayerLot && points.map(({ lot, score }) => {
         const pct = score.total / Math.max(max, 1);
