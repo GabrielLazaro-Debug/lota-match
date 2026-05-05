@@ -13,7 +13,14 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+        display: ['"Space Grotesk"','Inter','sans-serif'],
+        mono: ['"JetBrains Mono"','ui-monospace','monospace'],
+      },
       colors: {
+        warning: "hsl(var(--warning))",
+        success: "hsl(var(--success))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
