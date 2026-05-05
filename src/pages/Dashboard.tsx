@@ -45,6 +45,7 @@ export default function Dashboard() {
   const [cmpA, setCmpA] = useState<{ lot: Lotacao; score: ScoreResult } | undefined>();
   const [cmpB, setCmpB] = useState<{ lot: Lotacao; score: ScoreResult } | undefined>();
   const [cmpOpen, setCmpOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("ranking");
 
   const xlsxRef = useRef<HTMLInputElement>(null);
   const kmlRef = useRef<HTMLInputElement>(null);
@@ -166,7 +167,7 @@ export default function Dashboard() {
             </div>
           )}
 
-          <Tabs defaultValue="ranking">
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList>
               <TabsTrigger value="ranking">Ranking</TabsTrigger>
               <TabsTrigger value="map">Mapa</TabsTrigger>
@@ -193,7 +194,7 @@ export default function Dashboard() {
 
             <TabsContent value="map" className="mt-4">
               <div className="overflow-hidden rounded-2xl border border-border/60 bg-grad-card p-2 shadow-soft">
-                <BrazilMap rows={filtered} max={max} />
+                <BrazilMap rows={filtered} max={max} active={activeTab === "map"} />
               </div>
             </TabsContent>
 
