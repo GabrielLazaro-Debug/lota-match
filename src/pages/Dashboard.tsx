@@ -87,6 +87,9 @@ export default function Dashboard() {
             <Link to="/onboarding" className="ml-1 underline hover:text-primary">editar</Link>
           </div>
           <div className="ml-auto flex items-center gap-2">
+            <Button asChild size="sm" variant="ghost" title="Voltar para a tela inicial">
+              <Link to="/"><Home className="mr-1 h-4 w-4" />Início</Link>
+            </Button>
             <Button size="sm" variant={admin ? "secondary" : "ghost"}
               onClick={() => admin ? (endSession(), refresh(), toast.success("Sessão admin encerrada")) : setGateOpen(true)}
               title={admin ? "Encerrar sessão admin" : "Entrar como administrador"}>
