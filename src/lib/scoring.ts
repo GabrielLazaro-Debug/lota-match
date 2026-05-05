@@ -3,9 +3,10 @@ import type { Formula, Lotacao, ScoreResult, Weights } from "./types";
 export function computeScore(lot: Lotacao, formula: Formula, weights: Weights): ScoreResult {
   const terms = formula.terms.map((t) => {
     let value = Number((lot as any)[t.field] ?? 0) || 0;
-    // ADFRON só conta se adfron_flag = 1 (Sim)
-    if (t.field === "adfron_pontos" && Number(lot.adfron_flag ?? 0) !== 1) {
-      value = 0;
+    // pontuacao_lotacao usa faixas: >=3 -> 2, [2,3) -> 1, <2 -> 0
+    if (t.field === "pontuacao_lotacao") {
+      const raw = Number(lot.pontuacao_lotacao ?? 0) || 0;
+      value = raw >= 3 ? 2 : raw >= 2 ? 1 : 0;
     }
     const weight = Number(weights[t.weightKey] ?? 0) || 0;
     const coef = Number(t.coef ?? 1);
@@ -42,7 +43,7 @@ export const FIELD_LABELS: Record<string, string> = {
   aeroporto: "Aeroporto",
   voo_direto_fortaleza: "Voo direto p/ Fortaleza",
   passagem_categoria: "Categoria de passagem",
-  adfron_pontos: "ADFRON (se Sim)",
+  adfron_pontos: "ADFRON",
   atratividade_pontos: "Atratividade",
-  pontuacao_lotacao: "Pontuação da lotação",
+  pontuacao_lotacao: "Pontuação da lotação (remoção)",
 };
