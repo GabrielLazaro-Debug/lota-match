@@ -18,7 +18,10 @@ export function buildProfilesFromRows(rows: PerfilRow[]): PesoProfile[] {
     }
     map.get(r.profile_id)!.pesos[r.criterio_key] = Number(r.peso) || 0;
   }
-  return [...map.values()];
+  const list = [...map.values()];
+  // Garantir que pontuacao_lotacao exista como critério (peso default 1)
+  for (const p of list) if (p.pesos.pontuacao_lotacao == null) p.pesos.pontuacao_lotacao = 1;
+  return list;
 }
 
 export const DEFAULT_PROFILES: PesoProfile[] = buildProfilesFromRows(perfisRaw as PerfilRow[]);
