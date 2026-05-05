@@ -12,11 +12,13 @@ import LotacaoCard from "@/components/LotacaoCard";
 import LotacaoDetail from "@/components/LotacaoDetail";
 import CompareDialog from "@/components/CompareDialog";
 import BrazilMap from "@/components/BrazilMap";
-import { Download, FileSpreadsheet, MapPinned, Search, Settings, Shield, Upload, Layers, GitCompare, X } from "lucide-react";
+import { Download, FileSpreadsheet, MapPinned, Search, Settings, Shield, Upload, Layers, GitCompare, X, Lock, LogOut, ShieldCheck } from "lucide-react";
 import { importKmlOrKmz, importXlsx, mergeLotacoes } from "@/lib/importer";
 import { toast } from "sonner";
 import { exportRankingPdf, exportRankingXlsx } from "@/lib/exporters";
 import type { Lotacao, ScoreResult } from "@/lib/types";
+import AdminGate, { useAdmin } from "@/components/AdminGate";
+import { endSession } from "@/lib/admin";
 
 export default function Dashboard() {
   const store = useStore();
