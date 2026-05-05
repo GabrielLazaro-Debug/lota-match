@@ -48,6 +48,19 @@ export default function Dashboard() {
 
   const xlsxRef = useRef<HTMLInputElement>(null);
   const kmlRef = useRef<HTMLInputElement>(null);
+  const { admin, refresh } = useAdmin();
+  const [gateOpen, setGateOpen] = useState(false);
+  const [pendingAction, setPendingAction] = useState<null | "xlsx" | "kml">(null);
+
+  function requireAdmin(action: "xlsx" | "kml") {
+    if (admin) {
+      if (action === "xlsx") xlsxRef.current?.click();
+      else kmlRef.current?.click();
+      return;
+    }
+    setPendingAction(action);
+    setGateOpen(true);
+  }
 
   useEffect(() => { store.reenrich(); /* eslint-disable-next-line */ }, []);
 
