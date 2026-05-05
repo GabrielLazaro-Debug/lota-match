@@ -43,7 +43,7 @@ export const FIELD_LABELS: Record<string, string> = {
   aeroporto: "Aeroporto",
   voo_direto_fortaleza: "Voo direto p/ Fortaleza",
   passagem_categoria: "Categoria de passagem",
-  adfron_pontos: "ADFRON (se Sim)",
+  adfron_pontos: "ADFRON",
   atratividade_pontos: "Atratividade",
-  pontuacao_lotacao: "Pontuação da lotação",
+  pontuacao_lotacao: "Pontuação da lotação (remoção)",
 };
