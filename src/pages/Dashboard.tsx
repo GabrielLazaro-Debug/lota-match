@@ -143,7 +143,7 @@ export default function Dashboard() {
                 </select>
               </div>
               <div className="flex items-center justify-between"><Label className="text-xs">Apenas ADFRON</Label><Switch checked={adfron} onCheckedChange={setAdfron} /></div>
-              <div className="flex items-center justify-between"><Label className="text-xs">Com aeroporto</Label><Switch checked={airport} onCheckedChange={setAirport} /></div>
+              <div className="flex items-center justify-between"><Label className="text-xs">Com voo direto da sua origem</Label><Switch checked={direct} onCheckedChange={setDirect} /></div>
               <div className="flex items-center justify-between"><Label className="text-xs">Top 10 apenas</Label><Switch checked={topOnly} onCheckedChange={setTopOnly} /></div>
             </div>
           </div>
