@@ -1,0 +1,119 @@
+import { AIRPORTS, IATA_TO_ICAO, ROUTES, type Airport } from "./airports";
+import { findGeo, haversine } from "./geo";
+import type { Lotacao, Origem } from "./types";
+
+// ============================================================
+// Logistics service (singleton, in-memory cache)
+// - Origem dinâmica (depende da Moradia Atual do usuário)
+// - Distância e voo direto sempre calculados a partir da origem
+// - Preço estimado calculado offline; preço real sob demanda
+// ============================================================
+
+interface OriginInfo {
+  municipio: string; uf: string;
+  lat: number; lon: number;
+  airport?: Airport;
+  iata?: string;
+  icao?: string;
+}
+
+const airportCache = new Map<string, Airport | undefined>(); // key: "lat,lon"
+const originCache = new Map<string, OriginInfo>();
+
+function nearestAirport(lat: number, lon: number): Airport | undefined {
+  const key = `${lat.toFixed(3)},${lon.toFixed(3)}`;
+  if (airportCache.has(key)) return airportCache.get(key);
+  let best: Airport | undefined; let bestD = Infinity;
+  for (const a of AIRPORTS) {
+    const d = haversine({ lat, lon }, { lat: a.lat, lon: a.lon });
+    if (d < bestD) { bestD = d; best = a; }
+  }
+  airportCache.set(key, best);
+  return best;
+}
+
+export function resolveOrigin(o: Origem): OriginInfo | undefined {
+  const key = `${o.municipio}|${o.uf}`.toLowerCase();
+  if (originCache.has(key)) return originCache.get(key);
+  const lat = o.lat, lon = o.lon;
+  if (lat == null || lon == null) {
+    const g = findGeo(o.municipio, o.uf);
+    if (!g) return undefined;
+    return resolveOrigin({ ...o, lat: g.lat, lon: g.lon });
+  }
+  const ap = nearestAirport(lat, lon);
+  const iata = ap?.iata;
+  const icao = iata ? IATA_TO_ICAO[iata] : undefined;
+  const info: OriginInfo = { municipio: o.municipio, uf: o.uf, lat, lon, airport: ap, iata, icao };
+  originCache.set(key, info);
+  return info;
+}
+
+export function hasDirectRoute(originIcao?: string, destIcao?: string): boolean | null {
+  if (!originIcao || !destIcao) return null;
+  if (originIcao === destIcao) return true;
+  return Boolean(ROUTES[originIcao]?.[destIcao] || ROUTES[destIcao]?.[originIcao]);
+}
+
+// Preço estimado (offline) baseado em distância. Heurística simples e transparente.
+export function estimatePrice(km: number, voo_direto: boolean | null): number {
+  if (!isFinite(km) || km <= 0) return 0;
+  const base = 280;
+  const perKm = voo_direto === false ? 0.62 : 0.48; // conexões ficam mais caras
+  const raw = base + perKm * km;
+  return Math.round(raw / 10) * 10;
+}
+
+export interface LogisticsResult {
+  distancia_origem_km: number | null;
+  voo_direto: boolean | null;
+  origem_iata?: string;
+  destino_iata?: string;
+  preco_estimado: number | null;
+}
+
+export function computeLogistics(lot: Lotacao, origem?: Origem): LogisticsResult {
+  if (!origem) return { distancia_origem_km: null, voo_direto: null, preco_estimado: null };
+  const origin = resolveOrigin(origem);
+  if (!origin) return { distancia_origem_km: null, voo_direto: null, preco_estimado: null };
+
+  let lat = lot.lat, lon = lot.lon;
+  if (lat == null || lon == null) {
+    const g = findGeo(lot.municipio, lot.uf);
+    if (g) { lat = g.lat; lon = g.lon; }
+  }
+  if (lat == null || lon == null) {
+    return { distancia_origem_km: null, voo_direto: null, origem_iata: origin.iata, preco_estimado: null };
+  }
+  const km = haversine({ lat: origin.lat, lon: origin.lon }, { lat, lon });
+  const destAp = nearestAirport(lat, lon);
+  const destIata = destAp?.iata;
+  const destIcao = destIata ? IATA_TO_ICAO[destIata] : undefined;
+  const direct = hasDirectRoute(origin.icao, destIcao);
+  const preco = estimatePrice(km, direct);
+  return {
+    distancia_origem_km: km,
+    voo_direto: direct,
+    origem_iata: origin.iata,
+    destino_iata: destIata,
+    preco_estimado: preco,
+  };
+}
+
+// Preço real sob demanda. Sem backend configurado neste app: marca como indisponível.
+// Se um endpoint /api/flight-price for adicionado depois, basta trocar a implementação.
+export interface RealPriceResult { preco: number | null; updatedAt: string; ok: boolean; error?: string; }
+export async function fetchRealPrice(_origem_iata?: string, _destino_iata?: string): Promise<RealPriceResult> {
+  try {
+    const r = await fetch("/api/flight-price", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ origem_iata: _origem_iata, destino_iata: _destino_iata }),
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    return { preco: Number(data.preco) || null, updatedAt: new Date().toISOString(), ok: true };
+  } catch (e: any) {
+    return { preco: null, updatedAt: new Date().toISOString(), ok: false, error: e?.message ?? "indisponível" };
+  }
+}
