@@ -150,3 +150,47 @@ function List({ title, items, tone, icon: Icon }: { title: string; items: string
     </div>
   );
 }
+
+function PriceRow({ lot }: { lot: Lotacao }) {
+  const [loading, setLoading] = useState(false);
+  const [real, setReal] = useState<{ preco: number | null; updatedAt: string } | null>(
+    lot.preco_real != null ? { preco: lot.preco_real, updatedAt: lot.preco_real_updated_at ?? new Date().toISOString() } : null,
+  );
+  async function refresh() {
+    if (!lot.origem_iata || !lot.destino_iata) {
+      toast.error("Aeroporto de origem/destino indisponível");
+      return;
+    }
+    setLoading(true);
+    const r = await fetchRealPrice(lot.origem_iata, lot.destino_iata);
+    setLoading(false);
+    if (r.ok && r.preco != null) {
+      setReal({ preco: r.preco, updatedAt: r.updatedAt });
+      toast.success("Preço real atualizado");
+    } else {
+      toast.error("Preço real indisponível — mantendo estimado");
+    }
+  }
+  const showReal = real?.preco != null;
+  const value = showReal
+    ? `R$ ${real!.preco!.toLocaleString("pt-BR")}`
+    : lot.preco_estimado != null && lot.preco_estimado > 0
+      ? `R$ ${lot.preco_estimado.toLocaleString("pt-BR")}`
+      : "—";
+  const badge = showReal
+    ? `REAL — atualizado ${new Date(real!.updatedAt).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}`
+    : "ESTIMADO";
+  return (
+    <div className="flex items-start justify-between gap-3 rounded-lg bg-secondary/30 px-3 py-2">
+      <div className="flex items-center gap-2 text-muted-foreground"><Wallet className="h-3.5 w-3.5" />Passagem</div>
+      <div className="text-right">
+        <div className="font-medium">{value}</div>
+        <div className="text-[10px] text-muted-foreground">{badge}</div>
+        <Button size="sm" variant="ghost" className="mt-1 h-6 px-2 text-[10px]" disabled={loading} onClick={refresh}>
+          <RefreshCw className={`mr-1 h-3 w-3 ${loading ? "animate-spin" : ""}`} />
+          Atualizar preço real
+        </Button>
+      </div>
+    </div>
+  );
+}
