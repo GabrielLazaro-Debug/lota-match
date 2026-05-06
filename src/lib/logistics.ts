@@ -21,8 +21,6 @@ export function enrichLotacoes(lots: Lotacao[], origem?: Origem): Lotacao[] {
     return enriched;
   });
 }
-import { findGeo, haversine } from "./geo";
-import type { Lotacao, Origem } from "./types";
 
 // ============================================================
 // Logistics service (singleton, in-memory cache)
