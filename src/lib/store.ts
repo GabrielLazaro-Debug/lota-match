@@ -26,6 +26,7 @@ interface State {
   setKml: (g: any) => void;
   toggleLayer: (k: "lot" | "kml") => void;
   reenrich: () => void;
+  resetSimulation: () => void;
 }
 
 const initialWeights = DEFAULT_PROFILES.find((p) => p.id === "padrao_planilha")?.pesos
@@ -63,6 +64,18 @@ export const useStore = create<State>()(
       setKml: (g) => set({ userKmlGeoJson: g }),
       toggleLayer: (k) => set(k === "lot" ? { showLayerLot: !get().showLayerLot } : { showLayerKml: !get().showLayerKml }),
       reenrich: () => set({ lotacoes: enrichLotacoes(get().lotacoes, get().origem) }),
+      resetSimulation: () => {
+        const defaultProfile = DEFAULT_PROFILES.find((p) => p.id === "padrao_planilha");
+        set({
+          lotacoes: enrichLotacoes(DEFAULT_LOTACOES),
+          origem: undefined,
+          onboarded: false,
+          activeFormulaId: DEFAULT_FORMULAS[0].id,
+          activeProfileId: "padrao_planilha",
+          weights: defaultProfile?.pesos ?? initialWeights,
+          userKmlGeoJson: undefined,
+        });
+      },
     }),
     {
       name: "pf-simulador-v1",
