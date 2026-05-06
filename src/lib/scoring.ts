@@ -54,9 +54,12 @@ export const FIELD_LABELS: Record<string, string> = {
   educacao: "Educação",
   custo_vida: "Custo de vida",
   aeroporto: "Aeroporto",
-  voo_direto_fortaleza: "Voo direto p/ Fortaleza",
+  voo_direto_fortaleza: "Voo direto da sua origem",
+  voo_direto: "Voo direto da sua origem",
   passagem_categoria: "Categoria de passagem",
   adfron_pontos: "ADFRON",
   atratividade_pontos: "Atratividade",
   pontuacao_lotacao: "Pontuação da lotação (remoção)",
+  distancia_origem: "Distância da sua origem",
+  preco_estimado: "Preço estimado da passagem",
 };
