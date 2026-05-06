@@ -26,6 +26,7 @@ interface State {
   setKml: (g: any) => void;
   toggleLayer: (k: "lot" | "kml") => void;
   reenrich: () => void;
+  resetSimulation: () => void;
 }
 
 const initialWeights = DEFAULT_PROFILES.find((p) => p.id === "padrao_planilha")?.pesos
