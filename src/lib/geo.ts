@@ -1,5 +1,5 @@
 import municipiosData from "@/data/municipios_latlon.json";
-import type { Lotacao, Origem } from "./types";
+
 
 export interface GeoPoint {
   municipio: string;

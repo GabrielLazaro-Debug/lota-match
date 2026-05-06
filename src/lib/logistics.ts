@@ -2,6 +2,28 @@ import { AIRPORTS, IATA_TO_ICAO, ROUTES, type Airport } from "./airports";
 import { findGeo, haversine } from "./geo";
 import type { Lotacao, Origem } from "./types";
 
+export function enrichLotacoes(lots: Lotacao[], origem?: Origem): Lotacao[] {
+  return lots.map((l) => {
+    const g = findGeo(l.municipio, l.uf);
+    const enriched: Lotacao = { ...l };
+    if (g) {
+      enriched.lat = g.lat; enriched.lon = g.lon;
+      enriched.distancia_fortaleza_km = g.distancia_fortaleza_km;
+    }
+    if (origem) {
+      const log = computeLogistics(enriched, origem);
+      enriched.voo_direto_origem = log.voo_direto;
+      enriched.origem_iata = log.origem_iata;
+      enriched.destino_iata = log.destino_iata;
+      enriched.preco_estimado = log.preco_estimado;
+      if (log.distancia_origem_km != null) enriched.distancia_origem_km = log.distancia_origem_km;
+    }
+    return enriched;
+  });
+}
+import { findGeo, haversine } from "./geo";
+import type { Lotacao, Origem } from "./types";
+
 // ============================================================
 // Logistics service (singleton, in-memory cache)
 // - Origem dinâmica (depende da Moradia Atual do usuário)
