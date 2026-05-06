@@ -26,6 +26,13 @@ export interface Lotacao {
   lon?: number;
   distancia_fortaleza_km?: number;
   distancia_origem_km?: number;
+  // logística calculada a partir da origem do usuário
+  voo_direto_origem?: boolean | null;
+  origem_iata?: string;
+  destino_iata?: string;
+  preco_estimado?: number | null;
+  preco_real?: number | null;
+  preco_real_updated_at?: string;
 }
 
 export type Weights = Record<string, number>;
