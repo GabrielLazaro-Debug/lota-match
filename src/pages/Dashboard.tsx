@@ -30,16 +30,16 @@ export default function Dashboard() {
   const [q, setQ] = useState("");
   const [uf, setUf] = useState("");
   const [adfron, setAdfron] = useState(false);
-  const [airport, setAirport] = useState(false);
+  const [direct, setDirect] = useState(false);
   const [topOnly, setTopOnly] = useState(false);
 
   const filtered = useMemo(() => ranked.filter(({ lot }) => {
     if (q && !`${lot.municipio} ${lot.unidade}`.toLowerCase().includes(q.toLowerCase())) return false;
     if (uf && lot.uf !== uf.toUpperCase()) return false;
     if (adfron && (lot.adfron_pontos ?? 0) === 0) return false;
-    if (airport && lot.aeroporto !== 1) return false;
+    if (direct && lot.voo_direto_origem !== true) return false;
     return true;
-  }).slice(0, topOnly ? 10 : undefined), [ranked, q, uf, adfron, airport, topOnly]);
+  }).slice(0, topOnly ? 10 : undefined), [ranked, q, uf, adfron, direct, topOnly]);
 
   const [detail, setDetail] = useState<{ lot: Lotacao; score: ScoreResult } | undefined>();
   const [cmpA, setCmpA] = useState<{ lot: Lotacao; score: ScoreResult } | undefined>();
