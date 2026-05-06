@@ -57,11 +57,13 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
           <Row icon={GraduationCap} label="Educação" v={`${lot.educacao ?? "-"} / 5`} />
           <Row icon={Wallet} label="Custo vida" v={`${lot.custo_vida ?? "-"} / 2`} sub={lot.custo_vida_justificativa} />
           <Row icon={Plane} label="Aeroporto" v={lot.aeroporto === 1 ? "Sim" : "Não"} />
-          <Row icon={Plane} label="Voo direto p/ Fortaleza" v={lot.voo_direto_fortaleza === 1 ? "Sim" : "Não"} />
+          <Row icon={Plane} label="Voo direto da sua origem"
+            v={lot.voo_direto_origem === true ? "Sim" : lot.voo_direto_origem === false ? "Não" : "indisponível"}
+            sub={lot.origem_iata && lot.destino_iata ? `${lot.origem_iata} → ${lot.destino_iata}` : undefined} />
           <Row icon={Mountain} label="ADFRON" v={`${lot.adfron_pontos ?? 0} pts`} />
-          <Row icon={MapPin} label="Distância da sua origem" v={lot.distancia_origem_km != null ? `${lot.distancia_origem_km} km` : "—"} />
-          <Row icon={MapPin} label="Distância de Fortaleza" v={lot.distancia_fortaleza_km != null ? `${lot.distancia_fortaleza_km} km` : "—"} />
-          <Row icon={Wallet} label="Passagem média" v={lot.passagem_media != null ? `R$ ${Number(lot.passagem_media).toLocaleString("pt-BR")}` : "—"} sub={lot.passagem_obs ?? undefined} />
+          <Row icon={MapPin} label="Distância da sua origem" v={lot.distancia_origem_km != null ? `${lot.distancia_origem_km.toLocaleString("pt-BR")} km` : "—"} />
+          <Row icon={MapPin} label="Distância de Fortaleza" v={lot.distancia_fortaleza_km != null ? `${lot.distancia_fortaleza_km.toLocaleString("pt-BR")} km` : "—"} />
+          <PriceRow lot={lot} />
         </div>
 
         <div className="mt-6">
