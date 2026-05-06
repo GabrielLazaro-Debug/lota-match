@@ -19,8 +19,12 @@ export function buildProfilesFromRows(rows: PerfilRow[]): PesoProfile[] {
     map.get(r.profile_id)!.pesos[r.criterio_key] = Number(r.peso) || 0;
   }
   const list = [...map.values()];
-  // Garantir que pontuacao_lotacao exista como critério (peso default 1)
-  for (const p of list) if (p.pesos.pontuacao_lotacao == null) p.pesos.pontuacao_lotacao = 1;
+  for (const p of list) {
+    if (p.pesos.pontuacao_lotacao == null) p.pesos.pontuacao_lotacao = 1;
+    if (p.pesos.distancia_origem == null) p.pesos.distancia_origem = 2;
+    if (p.pesos.preco_estimado == null) p.pesos.preco_estimado = 1;
+    if (p.pesos.voo_direto == null) p.pesos.voo_direto = p.pesos.voo_direto_fortaleza ?? 1;
+  }
   return list;
 }
 

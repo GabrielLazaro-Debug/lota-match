@@ -44,7 +44,9 @@ export default function LotacaoCard({ lot, score, rank, maxScore, onClick, selec
         <Stat icon={GraduationCap} v={lot.educacao} label="Educ" />
         <Stat icon={Wallet} v={lot.custo_vida} label="C.Vida" />
         {lot.aeroporto === 1 && <Badge icon={Plane}>Aeroporto</Badge>}
-        {lot.voo_direto_fortaleza === 1 && <Badge icon={Plane} tone="accent">Voo direto FOR</Badge>}
+        {lot.voo_direto_origem === true && <Badge icon={Plane} tone="accent">Voo direto</Badge>}
+        {lot.voo_direto_origem === false && <Badge icon={Plane}>Sem voo direto</Badge>}
+        {lot.voo_direto_origem == null && lot.distancia_origem_km != null && <Badge icon={Plane}>Voo: indisponível</Badge>}
         {Number(lot.adfron_flag) === 1 && <Badge icon={Mountain} tone="warning">ADFRON +{lot.adfron_pontos ?? 0}</Badge>}
         {lot.pontuacao_lotacao != null && (
           <Badge icon={Star} tone={lot.pontuacao_lotacao >= 3 ? "accent" : "default"}>
@@ -53,6 +55,9 @@ export default function LotacaoCard({ lot, score, rank, maxScore, onClick, selec
         )}
         {lot.distancia_origem_km != null && (
           <Badge icon={MapPin}>{lot.distancia_origem_km.toLocaleString("pt-BR")} km de você</Badge>
+        )}
+        {lot.preco_estimado != null && lot.preco_estimado > 0 && (
+          <Badge icon={Wallet}>R$ {lot.preco_estimado.toLocaleString("pt-BR")} <span className="opacity-60">est.</span></Badge>
         )}
       </div>
 

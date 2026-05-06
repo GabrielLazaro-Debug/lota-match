@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Bar, BarChart, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from "recharts";
 import type { Lotacao, ScoreResult } from "@/lib/types";
 import { FIELD_LABELS } from "@/lib/scoring";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { fetchRealPrice } from "@/lib/logistics";
+import { toast } from "sonner";
 
 interface Props {
   open: boolean; onClose: () => void;
@@ -57,11 +61,13 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
           <Row icon={GraduationCap} label="Educação" v={`${lot.educacao ?? "-"} / 5`} />
           <Row icon={Wallet} label="Custo vida" v={`${lot.custo_vida ?? "-"} / 2`} sub={lot.custo_vida_justificativa} />
           <Row icon={Plane} label="Aeroporto" v={lot.aeroporto === 1 ? "Sim" : "Não"} />
-          <Row icon={Plane} label="Voo direto p/ Fortaleza" v={lot.voo_direto_fortaleza === 1 ? "Sim" : "Não"} />
+          <Row icon={Plane} label="Voo direto da sua origem"
+            v={lot.voo_direto_origem === true ? "Sim" : lot.voo_direto_origem === false ? "Não" : "indisponível"}
+            sub={lot.origem_iata && lot.destino_iata ? `${lot.origem_iata} → ${lot.destino_iata}` : undefined} />
           <Row icon={Mountain} label="ADFRON" v={`${lot.adfron_pontos ?? 0} pts`} />
-          <Row icon={MapPin} label="Distância da sua origem" v={lot.distancia_origem_km != null ? `${lot.distancia_origem_km} km` : "—"} />
-          <Row icon={MapPin} label="Distância de Fortaleza" v={lot.distancia_fortaleza_km != null ? `${lot.distancia_fortaleza_km} km` : "—"} />
-          <Row icon={Wallet} label="Passagem média" v={lot.passagem_media != null ? `R$ ${Number(lot.passagem_media).toLocaleString("pt-BR")}` : "—"} sub={lot.passagem_obs ?? undefined} />
+          <Row icon={MapPin} label="Distância da sua origem" v={lot.distancia_origem_km != null ? `${lot.distancia_origem_km.toLocaleString("pt-BR")} km` : "—"} />
+          <Row icon={MapPin} label="Distância de Fortaleza" v={lot.distancia_fortaleza_km != null ? `${lot.distancia_fortaleza_km.toLocaleString("pt-BR")} km` : "—"} />
+          <PriceRow lot={lot} />
         </div>
 
         <div className="mt-6">
@@ -141,6 +147,50 @@ function List({ title, items, tone, icon: Icon }: { title: string; items: string
       <div className="mb-1 flex items-center gap-1 text-xs font-semibold"><Icon className="h-3.5 w-3.5" /> {title}</div>
       {items.length === 0 ? <div className="text-xs text-muted-foreground">—</div> :
         <ul className="ml-1 space-y-0.5 text-xs text-foreground/90">{items.map((i) => <li key={i}>· {i}</li>)}</ul>}
+    </div>
+  );
+}
+
+function PriceRow({ lot }: { lot: Lotacao }) {
+  const [loading, setLoading] = useState(false);
+  const [real, setReal] = useState<{ preco: number | null; updatedAt: string } | null>(
+    lot.preco_real != null ? { preco: lot.preco_real, updatedAt: lot.preco_real_updated_at ?? new Date().toISOString() } : null,
+  );
+  async function refresh() {
+    if (!lot.origem_iata || !lot.destino_iata) {
+      toast.error("Aeroporto de origem/destino indisponível");
+      return;
+    }
+    setLoading(true);
+    const r = await fetchRealPrice(lot.origem_iata, lot.destino_iata);
+    setLoading(false);
+    if (r.ok && r.preco != null) {
+      setReal({ preco: r.preco, updatedAt: r.updatedAt });
+      toast.success("Preço real atualizado");
+    } else {
+      toast.error("Preço real indisponível — mantendo estimado");
+    }
+  }
+  const showReal = real?.preco != null;
+  const value = showReal
+    ? `R$ ${real!.preco!.toLocaleString("pt-BR")}`
+    : lot.preco_estimado != null && lot.preco_estimado > 0
+      ? `R$ ${lot.preco_estimado.toLocaleString("pt-BR")}`
+      : "—";
+  const badge = showReal
+    ? `REAL — atualizado ${new Date(real!.updatedAt).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}`
+    : "ESTIMADO";
+  return (
+    <div className="flex items-start justify-between gap-3 rounded-lg bg-secondary/30 px-3 py-2">
+      <div className="flex items-center gap-2 text-muted-foreground"><Wallet className="h-3.5 w-3.5" />Passagem</div>
+      <div className="text-right">
+        <div className="font-medium">{value}</div>
+        <div className="text-[10px] text-muted-foreground">{badge}</div>
+        <Button size="sm" variant="ghost" className="mt-1 h-6 px-2 text-[10px]" disabled={loading} onClick={refresh}>
+          <RefreshCw className={`mr-1 h-3 w-3 ${loading ? "animate-spin" : ""}`} />
+          Atualizar preço real
+        </Button>
+      </div>
     </div>
   );
 }

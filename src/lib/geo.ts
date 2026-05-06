@@ -1,5 +1,5 @@
 import municipiosData from "@/data/municipios_latlon.json";
-import type { Lotacao, Origem } from "./types";
+
 
 export interface GeoPoint {
   municipio: string;
@@ -45,20 +45,6 @@ export function findGeo(municipio: string, uf: string): GeoPoint | undefined {
   return GEO_INDEX.get(`${m}|${u}`) ?? GEO_INDEX.get(m);
 }
 
-export function enrichLotacoes(lots: Lotacao[], origem?: Origem): Lotacao[] {
-  return lots.map((l) => {
-    const g = findGeo(l.municipio, l.uf);
-    const enriched = { ...l };
-    if (g) {
-      enriched.lat = g.lat; enriched.lon = g.lon;
-      enriched.distancia_fortaleza_km = g.distancia_fortaleza_km;
-    }
-    if (origem?.lat != null && origem?.lon != null && enriched.lat != null && enriched.lon != null) {
-      enriched.distancia_origem_km = haversine(
-        { lat: origem.lat, lon: origem.lon },
-        { lat: enriched.lat, lon: enriched.lon },
-      );
-    }
-    return enriched;
-  });
-}
+// enrichLotacoes vive em ./logistics para evitar ciclo de import.
+export { enrichLotacoes } from "./logistics";
+

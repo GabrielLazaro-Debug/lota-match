@@ -3,10 +3,23 @@ import type { Formula, Lotacao, ScoreResult, Weights } from "./types";
 export function computeScore(lot: Lotacao, formula: Formula, weights: Weights): ScoreResult {
   const terms = formula.terms.map((t) => {
     let value = Number((lot as any)[t.field] ?? 0) || 0;
-    // pontuacao_lotacao usa faixas: >=3 -> 2, [2,3) -> 1, <2 -> 0
     if (t.field === "pontuacao_lotacao") {
       const raw = Number(lot.pontuacao_lotacao ?? 0) || 0;
       value = raw >= 3 ? 2 : raw >= 2 ? 1 : 0;
+    }
+    // Voo direto agora é dinâmico (depende da origem do usuário)
+    if (t.field === "voo_direto_fortaleza" || t.field === "voo_direto") {
+      value = lot.voo_direto_origem === true ? 1 : 0;
+    }
+    // Distância da origem: quanto menor, melhor (0..2 pts)
+    if (t.field === "distancia_origem") {
+      const km = Number(lot.distancia_origem_km ?? 0);
+      value = km <= 0 ? 0 : km < 500 ? 2 : km < 1500 ? 1.5 : km < 2500 ? 1 : km < 3500 ? 0.5 : 0;
+    }
+    // Preço estimado: quanto menor, melhor (0..2 pts)
+    if (t.field === "preco_estimado") {
+      const p = Number(lot.preco_estimado ?? 0);
+      value = p <= 0 ? 0 : p < 500 ? 2 : p < 900 ? 1.5 : p < 1400 ? 1 : p < 2000 ? 0.5 : 0;
     }
     const weight = Number(weights[t.weightKey] ?? 0) || 0;
     const coef = Number(t.coef ?? 1);
@@ -41,9 +54,12 @@ export const FIELD_LABELS: Record<string, string> = {
   educacao: "Educação",
   custo_vida: "Custo de vida",
   aeroporto: "Aeroporto",
-  voo_direto_fortaleza: "Voo direto p/ Fortaleza",
+  voo_direto_fortaleza: "Voo direto da sua origem",
+  voo_direto: "Voo direto da sua origem",
   passagem_categoria: "Categoria de passagem",
   adfron_pontos: "ADFRON",
   atratividade_pontos: "Atratividade",
   pontuacao_lotacao: "Pontuação da lotação (remoção)",
+  distancia_origem: "Distância da sua origem",
+  preco_estimado: "Preço estimado da passagem",
 };
