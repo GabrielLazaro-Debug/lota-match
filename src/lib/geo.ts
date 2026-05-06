@@ -45,31 +45,6 @@ export function findGeo(municipio: string, uf: string): GeoPoint | undefined {
   return GEO_INDEX.get(`${m}|${u}`) ?? GEO_INDEX.get(m);
 }
 
-export function enrichLotacoes(lots: Lotacao[], origem?: Origem): Lotacao[] {
-  // Importação dinâmica para evitar ciclo
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { computeLogistics } = require("./logistics") as typeof import("./logistics");
-  return lots.map((l) => {
-    const g = findGeo(l.municipio, l.uf);
-    const enriched = { ...l };
-    if (g) {
-      enriched.lat = g.lat; enriched.lon = g.lon;
-      enriched.distancia_fortaleza_km = g.distancia_fortaleza_km;
-    }
-    if (origem?.lat != null && origem?.lon != null && enriched.lat != null && enriched.lon != null) {
-      enriched.distancia_origem_km = haversine(
-        { lat: origem.lat, lon: origem.lon },
-        { lat: enriched.lat, lon: enriched.lon },
-      );
-    }
-    if (origem) {
-      const log = computeLogistics(enriched, origem);
-      enriched.voo_direto_origem = log.voo_direto;
-      enriched.origem_iata = log.origem_iata;
-      enriched.destino_iata = log.destino_iata;
-      enriched.preco_estimado = log.preco_estimado;
-      if (log.distancia_origem_km != null) enriched.distancia_origem_km = log.distancia_origem_km;
-    }
-    return enriched;
-  });
-}
+// enrichLotacoes vive em ./logistics para evitar ciclo de import.
+export { enrichLotacoes } from "./logistics";
+
