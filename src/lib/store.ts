@@ -26,6 +26,7 @@ interface State {
   setKml: (g: any) => void;
   toggleLayer: (k: "lot" | "kml") => void;
   reenrich: () => void;
+  setPrecoReal: (lotId: string, preco: number, updatedAt?: string) => void;
   resetSimulation: () => void;
 }
 
@@ -64,6 +65,14 @@ export const useStore = create<State>()(
       setKml: (g) => set({ userKmlGeoJson: g }),
       toggleLayer: (k) => set(k === "lot" ? { showLayerLot: !get().showLayerLot } : { showLayerKml: !get().showLayerKml }),
       reenrich: () => set({ lotacoes: enrichLotacoes(get().lotacoes, get().origem) }),
+      setPrecoReal: (lotId, preco, updatedAt) => {
+        const ts = updatedAt ?? new Date().toISOString();
+        set({
+          lotacoes: get().lotacoes.map((l) =>
+            l.id_lotacao === lotId ? { ...l, preco_real: preco, preco_real_updated_at: ts } : l,
+          ),
+        });
+      },
       resetSimulation: () => {
         const defaultProfile = DEFAULT_PROFILES.find((p) => p.id === "padrao_planilha");
         set({

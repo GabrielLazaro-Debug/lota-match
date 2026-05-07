@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fetchRealPrice } from "@/lib/logistics";
+import { useStore } from "@/lib/store";
 import { toast } from "sonner";
 
 interface Props {
@@ -152,6 +153,7 @@ function List({ title, items, tone, icon: Icon }: { title: string; items: string
 }
 
 function PriceRow({ lot }: { lot: Lotacao }) {
+  const setPrecoReal = useStore((s) => s.setPrecoReal);
   const [loading, setLoading] = useState(false);
   const [real, setReal] = useState<{ preco: number | null; updatedAt: string } | null>(
     lot.preco_real != null ? { preco: lot.preco_real, updatedAt: lot.preco_real_updated_at ?? new Date().toISOString() } : null,
@@ -166,6 +168,7 @@ function PriceRow({ lot }: { lot: Lotacao }) {
     setLoading(false);
     if (r.ok && r.preco != null) {
       setReal({ preco: r.preco, updatedAt: r.updatedAt });
+      setPrecoReal(lot.id_lotacao, r.preco, r.updatedAt);
       toast.success("Preço real atualizado");
     } else {
       toast.error("Preço real indisponível — mantendo estimado");
