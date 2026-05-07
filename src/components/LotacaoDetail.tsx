@@ -31,7 +31,7 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
   if ((lot.saude ?? 0) >= 4) fortes.push("Saúde excelente");
   if ((lot.educacao ?? 0) >= 4) fortes.push("Educação forte");
   if (lot.aeroporto === 1) fortes.push("Aeroporto comercial");
-  if (lot.voo_direto_fortaleza === 1) fortes.push("Voo direto p/ Fortaleza");
+  if (lot.voo_direto_origem === true) fortes.push("Voo direto da sua origem");
   if ((lot.adfron_pontos ?? 0) > 0) fortes.push("Conta como ADFRON");
   if ((lot.custo_vida ?? 0) >= 2) fortes.push("Custo de vida abaixo da média");
   if ((lot.saude ?? 0) <= 2) fracos.push("Saúde limitada");
