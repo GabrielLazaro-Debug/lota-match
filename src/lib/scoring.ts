@@ -8,7 +8,7 @@ export function computeScore(lot: Lotacao, formula: Formula, weights: Weights): 
       value = raw >= 3 ? 2 : raw >= 2 ? 1 : 0;
     }
     // Voo direto agora é dinâmico (depende da origem do usuário)
-    if (t.field === "voo_direto_fortaleza" || t.field === "voo_direto") {
+    if (t.field === "voo_direto_fortaleza" || t.field === "voo_direto" || t.field === "voo_direto_origem") {
       value = lot.voo_direto_origem === true ? 1 : 0;
     }
     // Distância da origem: quanto menor, melhor (0..2 pts)
@@ -56,6 +56,7 @@ export const FIELD_LABELS: Record<string, string> = {
   aeroporto: "Aeroporto",
   voo_direto_fortaleza: "Voo direto da sua origem",
   voo_direto: "Voo direto da sua origem",
+  voo_direto_origem: "Voo direto da sua origem",
   passagem_categoria: "Categoria de passagem",
   adfron_pontos: "ADFRON",
   atratividade_pontos: "Atratividade",
