@@ -28,16 +28,42 @@ export function findAirportByMunicipality(municipio: string): Airport | undefine
   return AIRPORTS.find((a) => norm(a.municipality) === m);
 }
 
-export function nearestAirport(lat: number, lon: number, opts?: { onlyMediumLarge?: boolean }): Airport | undefined {
-  const pool = opts?.onlyMediumLarge
-    ? AIRPORTS.filter((a) => a.type === "medium_airport" || a.type === "large_airport")
-    : AIRPORTS;
-  let best: Airport | undefined; let bestD = Infinity;
-  for (const a of pool) {
-    const d = haversine({ lat, lon }, { lat: a.lat, lon: a.lon });
-    if (d < bestD) { bestD = d; best = a; }
+const NON_COMMERCIAL_PATTERNS = /(air force base|air base|aeroclube|heliport|helipad|heliponto)/i;
+
+export function isCommercialAirport(a: Airport): boolean {
+  if (!a) return false;
+  if (a.type === "heliport") return false;
+  if (NON_COMMERCIAL_PATTERNS.test(a.name || "")) return false;
+  return true;
+}
+
+export interface NearestAirportResult { airport: Airport; distance_km: number; }
+
+export function nearestAirports(
+  lat: number,
+  lon: number,
+  topK = 3,
+  opts?: { preferMediumLarge?: boolean },
+): NearestAirportResult[] {
+  const base = AIRPORTS.filter(isCommercialAirport);
+  const ranked = base
+    .map((a) => ({ airport: a, distance_km: haversine({ lat, lon }, { lat: a.lat, lon: a.lon }) }))
+    .sort((x, y) => x.distance_km - y.distance_km);
+
+  if (opts?.preferMediumLarge) {
+    const big = ranked.filter((r) => r.airport.type === "medium_airport" || r.airport.type === "large_airport");
+    if (big.length >= topK) return big.slice(0, topK);
+    // fallback: completa com small mais próximos sem duplicar
+    const seen = new Set(big.map((b) => b.airport.iata));
+    const fill = ranked.filter((r) => !seen.has(r.airport.iata));
+    return [...big, ...fill].slice(0, topK);
   }
-  return best;
+  return ranked.slice(0, topK);
+}
+
+export function nearestAirport(lat: number, lon: number, opts?: { onlyMediumLarge?: boolean; preferMediumLarge?: boolean }): Airport | undefined {
+  const preferMediumLarge = opts?.preferMediumLarge ?? opts?.onlyMediumLarge;
+  return nearestAirports(lat, lon, 1, { preferMediumLarge })[0]?.airport;
 }
 
 export function hasDirectFlight(fromIcao: string, toIcao: string): boolean {
