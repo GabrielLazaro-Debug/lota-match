@@ -16,9 +16,9 @@ export function computeScore(lot: Lotacao, formula: Formula, weights: Weights): 
       const km = Number(lot.distancia_origem_km ?? 0);
       value = km <= 0 ? 0 : km < 500 ? 2 : km < 1500 ? 1.5 : km < 2500 ? 1 : km < 3500 ? 0.5 : 0;
     }
-    // Preço estimado: quanto menor, melhor (0..2 pts)
+    // Preço (real se disponível, senão estimado): quanto menor, melhor (0..2 pts)
     if (t.field === "preco_estimado") {
-      const p = Number(lot.preco_estimado ?? 0);
+      const p = Number(lot.preco_real ?? lot.preco_estimado ?? 0);
       value = p <= 0 ? 0 : p < 500 ? 2 : p < 900 ? 1.5 : p < 1400 ? 1 : p < 2000 ? 0.5 : 0;
     }
     const weight = Number(weights[t.weightKey] ?? 0) || 0;
