@@ -16,9 +16,10 @@ export function computeScore(lot: Lotacao, formula: Formula, weights: Weights): 
       const km = Number(lot.distancia_origem_km ?? 0);
       value = km <= 0 ? 0 : km < 500 ? 2 : km < 1500 ? 1.5 : km < 2500 ? 1 : km < 3500 ? 0.5 : 0;
     }
-    // Preço (real se disponível, senão estimado): quanto menor, melhor (0..2 pts)
-    if (t.field === "preco_estimado") {
-      const p = Number(lot.preco_real ?? lot.preco_estimado ?? 0);
+    // Preço (real se disponível e > 0, senão estimado): quanto menor, melhor (0..2 pts)
+    if (t.field === "preco_estimado" || t.field === "preco_real") {
+      const real = Number(lot.preco_real ?? 0);
+      const p = real > 0 ? real : Number(lot.preco_estimado ?? 0);
       value = p <= 0 ? 0 : p < 500 ? 2 : p < 900 ? 1.5 : p < 1400 ? 1 : p < 2000 ? 0.5 : 0;
     }
     const weight = Number(weights[t.weightKey] ?? 0) || 0;
@@ -63,4 +64,5 @@ export const FIELD_LABELS: Record<string, string> = {
   pontuacao_lotacao: "Pontuação da lotação (remoção)",
   distancia_origem: "Distância da sua origem",
   preco_estimado: "Preço estimado da passagem",
+  preco_real: "Preço real da passagem",
 };
