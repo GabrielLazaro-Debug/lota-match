@@ -120,19 +120,21 @@ export function computeLogistics(lot: Lotacao, origem?: Origem): LogisticsResult
   };
 }
 
-// Preço real sob demanda. Sem backend configurado neste app: marca como indisponível.
-// Se um endpoint /api/flight-price for adicionado depois, basta trocar a implementação.
+// Preço real sob demanda via edge function flight-price (proxy seguro p/ Kiwi Tequila).
+import { supabase } from "@/integrations/supabase/client";
+
 export interface RealPriceResult { preco: number | null; updatedAt: string; ok: boolean; error?: string; }
-export async function fetchRealPrice(_origem_iata?: string, _destino_iata?: string): Promise<RealPriceResult> {
+export async function fetchRealPrice(origem_iata?: string, destino_iata?: string): Promise<RealPriceResult> {
   try {
-    const r = await fetch("/api/flight-price", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ origem_iata: _origem_iata, destino_iata: _destino_iata }),
+    if (!origem_iata || !destino_iata) {
+      return { preco: null, updatedAt: new Date().toISOString(), ok: false, error: "IATA ausente" };
+    }
+    const { data, error } = await supabase.functions.invoke("flight-price", {
+      body: { origem_iata, destino_iata },
     });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const data = await r.json();
-    return { preco: Number(data.preco) || null, updatedAt: new Date().toISOString(), ok: true };
+    if (error) throw error;
+    const preco = data?.preco != null ? Number(data.preco) : null;
+    return { preco, updatedAt: data?.updatedAt ?? new Date().toISOString(), ok: preco != null };
   } catch (e: any) {
     return { preco: null, updatedAt: new Date().toISOString(), ok: false, error: e?.message ?? "indisponível" };
   }
