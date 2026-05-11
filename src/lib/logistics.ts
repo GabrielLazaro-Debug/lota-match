@@ -124,14 +124,38 @@ export function computeLogistics(lot: Lotacao, origem?: Origem): LogisticsResult
 import { supabase } from "@/integrations/supabase/client";
 
 export interface RealPriceResult { preco: number | null; updatedAt: string; ok: boolean; error?: string; }
-export async function fetchRealPrice(origem_iata?: string, destino_iata?: string): Promise<RealPriceResult> {
+export interface FetchRealPriceOpts {
+  departDate?: string; // dd/mm/yyyy
+  returnDate?: string;
+  adults?: number;
+  currency?: string;
+}
+
+function defaultDepartDate(): string {
+  const d = new Date(Date.now() + 30 * 86400000);
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  return `${dd}/${mm}/${d.getFullYear()}`;
+}
+
+export async function fetchRealPrice(
+  origem_iata?: string,
+  destino_iata?: string,
+  opts: FetchRealPriceOpts = {},
+): Promise<RealPriceResult> {
   try {
     if (!origem_iata || !destino_iata) {
       return { preco: null, updatedAt: new Date().toISOString(), ok: false, error: "IATA ausente" };
     }
-    const { data, error } = await supabase.functions.invoke("flight-price", {
-      body: { origem_iata, destino_iata },
-    });
+    const payload = {
+      origem_iata,
+      destino_iata,
+      departDate: opts.departDate ?? defaultDepartDate(),
+      returnDate: opts.returnDate,
+      adults: opts.adults ?? 1,
+      currency: opts.currency ?? "BRL",
+    };
+    const { data, error } = await supabase.functions.invoke("flight-price", { body: payload });
     if (error) throw error;
     const preco = data?.preco != null ? Number(data.preco) : null;
     return { preco, updatedAt: data?.updatedAt ?? new Date().toISOString(), ok: preco != null };
