@@ -11,6 +11,9 @@ const NUM_FIELDS = ["vagas","pontuacao_lotacao","atratividade_pontos","saude","e
 function normalizeRow(r: any): Lotacao {
   const out: any = { ...r };
   for (const f of NUM_FIELDS) if (out[f] != null) out[f] = Number(out[f]);
+  // ADFRON: normaliza para 0 ou 2 (qualquer valor > 0 = ativo)
+  const adfronAtivo = (Number(out.adfron_pontos) || 0) > 0 || out.adfron_flag === 1 || out.adfron_flag === true;
+  out.adfron_pontos = adfronAtivo ? 2 : 0;
   if (!out.id_lotacao && out.unidade && out.municipio) out.id_lotacao = `${out.unidade}-${out.municipio}`;
   return out as Lotacao;
 }
