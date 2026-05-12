@@ -47,7 +47,7 @@ export default function LotacaoCard({ lot, score, rank, maxScore, onClick, selec
         {lot.voo_direto_origem === true && <Badge icon={Plane} tone="accent">Voo direto</Badge>}
         {lot.voo_direto_origem === false && <Badge icon={Plane}>Sem voo direto</Badge>}
         {lot.voo_direto_origem == null && lot.distancia_origem_km != null && <Badge icon={Plane}>Voo: indisponível</Badge>}
-        {Number(lot.adfron_flag) === 1 && <Badge icon={Mountain} tone="warning">ADFRON +{lot.adfron_pontos ?? 0}</Badge>}
+        {Number(lot.adfron_pontos ?? 0) > 0 && <Badge icon={Mountain} tone="warning">ADFRON</Badge>}
         {lot.pontuacao_lotacao != null && (
           <Badge icon={Star} tone={lot.pontuacao_lotacao >= 3 ? "accent" : "default"}>
             Pont. lotação: {Number(lot.pontuacao_lotacao).toFixed(2)}
