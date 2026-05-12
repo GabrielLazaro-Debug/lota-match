@@ -3,10 +3,9 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Bar, Bar
 import type { Lotacao, ScoreResult } from "@/lib/types";
 import { FIELD_LABELS } from "@/lib/scoring";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, RefreshCw } from "lucide-react";
+import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { fetchRealPrice } from "@/lib/logistics";
-import { useStore } from "@/lib/store";
+import { buildSkyscannerDayViewUrl, buildGoogleFlightsUrl, buildSearchHintText } from "@/lib/flightLinks";
 import { toast } from "sonner";
 
 interface Props {
