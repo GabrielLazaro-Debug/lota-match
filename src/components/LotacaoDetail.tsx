@@ -3,10 +3,9 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Bar, Bar
 import type { Lotacao, ScoreResult } from "@/lib/types";
 import { FIELD_LABELS } from "@/lib/scoring";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, RefreshCw } from "lucide-react";
+import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { fetchRealPrice } from "@/lib/logistics";
-import { useStore } from "@/lib/store";
+import { buildSkyscannerDayViewUrl, buildGoogleFlightsUrl, buildSearchHintText } from "@/lib/flightLinks";
 import { toast } from "sonner";
 
 interface Props {
@@ -153,46 +152,51 @@ function List({ title, items, tone, icon: Icon }: { title: string; items: string
 }
 
 function PriceRow({ lot }: { lot: Lotacao }) {
-  const setPrecoReal = useStore((s) => s.setPrecoReal);
-  const [loading, setLoading] = useState(false);
-  const [real, setReal] = useState<{ preco: number | null; updatedAt: string } | null>(
-    lot.preco_real != null ? { preco: lot.preco_real, updatedAt: lot.preco_real_updated_at ?? new Date().toISOString() } : null,
-  );
-  async function refresh() {
+  const value = lot.preco_estimado != null && lot.preco_estimado > 0
+    ? `R$ ${lot.preco_estimado.toLocaleString("pt-BR")}`
+    : "—";
+
+  function ensureAirports(): boolean {
     if (!lot.origem_iata || !lot.destino_iata) {
       toast.error("Aeroporto de origem/destino indisponível");
-      return;
+      return false;
     }
-    setLoading(true);
-    const r = await fetchRealPrice(lot.origem_iata, lot.destino_iata);
-    setLoading(false);
-    if (r.ok && r.preco != null) {
-      setReal({ preco: r.preco, updatedAt: r.updatedAt });
-      setPrecoReal(lot.id_lotacao, r.preco, r.updatedAt);
-      toast.success("Preço real atualizado");
-    } else {
-      toast.error("Preço real indisponível — mantendo estimado");
-    }
+    return true;
   }
-  const showReal = real?.preco != null;
-  const value = showReal
-    ? `R$ ${real!.preco!.toLocaleString("pt-BR")}`
-    : lot.preco_estimado != null && lot.preco_estimado > 0
-      ? `R$ ${lot.preco_estimado.toLocaleString("pt-BR")}`
-      : "—";
-  const badge = showReal
-    ? `REAL — atualizado ${new Date(real!.updatedAt).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}`
-    : "ESTIMADO";
+
+  function openSkyscanner() {
+    if (!ensureAirports()) return;
+    window.open(buildSkyscannerDayViewUrl(lot.origem_iata!, lot.destino_iata!), "_blank");
+  }
+
+  async function openGoogleFlights() {
+    if (!ensureAirports()) return;
+    const hint = buildSearchHintText(lot.origem_iata!, lot.destino_iata!);
+    try {
+      await navigator.clipboard.writeText(hint);
+      toast.success("Rota copiada — cole no Google Flights");
+    } catch {
+      toast.message(hint);
+    }
+    window.open(buildGoogleFlightsUrl(), "_blank");
+  }
+
   return (
     <div className="flex items-start justify-between gap-3 rounded-lg bg-secondary/30 px-3 py-2">
       <div className="flex items-center gap-2 text-muted-foreground"><Wallet className="h-3.5 w-3.5" />Passagem</div>
       <div className="text-right">
         <div className="font-medium">{value}</div>
-        <div className="text-[10px] text-muted-foreground">{badge}</div>
-        <Button size="sm" variant="ghost" className="mt-1 h-6 px-2 text-[10px]" disabled={loading} onClick={refresh}>
-          <RefreshCw className={`mr-1 h-3 w-3 ${loading ? "animate-spin" : ""}`} />
-          Atualizar preço real
-        </Button>
+        <div className="text-[10px] text-muted-foreground">ESTIMADO</div>
+        <div className="mt-1 flex flex-col items-end gap-1">
+          <Button size="sm" variant="ghost" className="h-6 px-2 text-[10px]" onClick={openGoogleFlights}>
+            <ExternalLink className="mr-1 h-3 w-3" />
+            Ver no Google Flights
+          </Button>
+          <Button size="sm" variant="ghost" className="h-6 px-2 text-[10px]" onClick={openSkyscanner}>
+            <ExternalLink className="mr-1 h-3 w-3" />
+            Ver no Skyscanner
+          </Button>
+        </div>
       </div>
     </div>
   );
