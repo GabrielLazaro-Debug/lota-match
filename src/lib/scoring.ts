@@ -17,6 +17,12 @@ export function computeScore(lot: Lotacao, formula: Formula, weights: Weights): 
       value = km <= 0 ? 0 : km < 500 ? 2 : km < 1500 ? 1.5 : km < 2500 ? 1 : km < 3500 ? 0.5 : 0;
     }
     // Preço (real se disponível e > 0, senão estimado): quanto menor, melhor (0..2 pts)
+    // ADFRON: ativo = 2, inativo = 0 (normaliza valores legados como 4)
+    if (t.field === "adfron_pontos") {
+      const raw = Number(lot.adfron_pontos ?? 0) || 0;
+      const ativo = raw > 0 || (lot as any).adfron_flag === 1 || (lot as any).adfron_flag === true;
+      value = ativo ? 2 : 0;
+    }
     if (t.field === "preco_estimado" || t.field === "preco_real") {
       const real = Number(lot.preco_real ?? 0);
       const p = real > 0 ? real : Number(lot.preco_estimado ?? 0);

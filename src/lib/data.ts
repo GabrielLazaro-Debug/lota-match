@@ -3,10 +3,14 @@ import perfisRaw from "@/data/perfis.json";
 import formulasRaw from "@/data/formulas.json";
 import type { Formula, Lotacao, PesoProfile } from "./types";
 
-export const DEFAULT_LOTACOES: Lotacao[] = (lotacoesRaw as any[]).map((r) => ({
-  ...r,
-  vagas: Number(r.vagas) || 0,
-}));
+export const DEFAULT_LOTACOES: Lotacao[] = (lotacoesRaw as any[]).map((r) => {
+  const adfronAtivo = (Number(r.adfron_pontos) || 0) > 0 || r.adfron_flag === 1 || r.adfron_flag === true;
+  return {
+    ...r,
+    vagas: Number(r.vagas) || 0,
+    adfron_pontos: adfronAtivo ? 2 : 0,
+  };
+});
 
 interface PerfilRow { profile_id: string; profile_nome: string; criterio_key: string; peso: number; }
 export function buildProfilesFromRows(rows: PerfilRow[]): PesoProfile[] {
