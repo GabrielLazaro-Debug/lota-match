@@ -50,13 +50,13 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
           <SheetTitle className="font-display">
             {lot.municipio} <span className="text-sm font-normal text-muted-foreground">/ {lot.uf}</span>
           </SheetTitle>
-          <div className="text-sm text-muted-foreground">{lot.unidade} · {lot.vagas} vagas</div>
+          <div className="text-sm text-muted-foreground">{lot.unidade} · {lot.vagas_disponiveis ?? lot.vagas} vagas</div>
         </SheetHeader>
 
         <div className="mt-4 grid grid-cols-3 gap-3">
           <Stat label="Score" value={score.total.toFixed(2)} accent />
           <Stat label="Match" value={`${Math.round((score.total / Math.max(...contrib.map(()=>score.total),1)) * 100)}%`} />
-          <Stat label="Vagas" value={String(lot.vagas)} />
+          <Stat label="Vagas" value={String(lot.vagas_disponiveis ?? lot.vagas)} />
         </div>
 
         <div className="mt-6 grid gap-2 text-xs">
