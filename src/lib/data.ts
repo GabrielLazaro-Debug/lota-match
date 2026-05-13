@@ -2,15 +2,21 @@ import lotacoesRaw from "@/data/lotacoes.json";
 import perfisRaw from "@/data/perfis.json";
 import formulasRaw from "@/data/formulas.json";
 import type { Formula, Lotacao, PesoProfile } from "./types";
+import { computeEstruturaUrbana } from "./estruturaUrbana";
 
-export const DEFAULT_LOTACOES: Lotacao[] = (lotacoesRaw as any[]).map((r) => {
-  const adfronAtivo = (Number(r.adfron_pontos) || 0) > 0 || r.adfron_flag === 1 || r.adfron_flag === true;
-  return {
-    ...r,
-    vagas: Number(r.vagas) || 0,
-    adfron_pontos: adfronAtivo ? 2 : 0,
-  };
-});
+export const DEFAULT_LOTACOES: Lotacao[] = (lotacoesRaw as any[])
+  .map((r) => {
+    const adfronAtivo = (Number(r.adfron_pontos) || 0) > 0 || r.adfron_flag === 1 || r.adfron_flag === true;
+    return {
+      ...r,
+      vagas: Number(r.vagas) || 0,
+      adfron_flag: adfronAtivo ? 1 : 0,
+      adfron_pontos: adfronAtivo ? 2 : 0,
+      estrutura_urbana_pontos: computeEstruturaUrbana(r),
+    };
+  })
+  // Apenas lotações ativas (com vagas atuais > 0)
+  .filter((l: any) => Number(l.vagas_disponiveis ?? 0) > 0);
 
 interface PerfilRow { profile_id: string; profile_nome: string; criterio_key: string; peso: number; }
 export function buildProfilesFromRows(rows: PerfilRow[]): PesoProfile[] {

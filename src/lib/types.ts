@@ -33,6 +33,25 @@ export interface Lotacao {
   preco_estimado?: number | null;
   preco_real?: number | null;
   preco_real_updated_at?: string;
+  // patch v2 — socioeconômicos / contexto
+  vagas_disponiveis?: number;
+  populacao?: number;
+  pib_per_capita?: number;
+  ips_brasil_2025?: number;
+  ips_agua_saneamento?: number;
+  ips_seguranca_pessoal?: number;
+  ifdm_firjan?: number;
+  saude_firjan?: number;
+  emprego_renda_firjan?: number;
+  taxa_homicidios?: number;
+  saude_leitos?: number;
+  fipezap_m2?: number;
+  tem_aeroporto_txt?: string;
+  dist_aeroporto_grande_porte_txt?: string;
+  rotas_voo_direto_txt?: string;
+  estrutura_urbana_pontos?: number;
+  last_updated_at?: string;
+  last_update_source?: string;
 }
 
 export type Weights = Record<string, number>;

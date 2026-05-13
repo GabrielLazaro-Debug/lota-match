@@ -23,6 +23,9 @@ export function computeScore(lot: Lotacao, formula: Formula, weights: Weights): 
       const ativo = raw > 0 || (lot as any).adfron_flag === 1 || (lot as any).adfron_flag === true;
       value = ativo ? 2 : 0;
     }
+    if (t.field === "estrutura_urbana") {
+      value = Number(lot.estrutura_urbana_pontos ?? 1) || 1;
+    }
     if (t.field === "preco_estimado" || t.field === "preco_real") {
       const real = Number(lot.preco_real ?? 0);
       const p = real > 0 ? real : Number(lot.preco_estimado ?? 0);
@@ -71,4 +74,5 @@ export const FIELD_LABELS: Record<string, string> = {
   distancia_origem: "Distância da sua origem",
   preco_estimado: "Preço estimado da passagem",
   preco_real: "Preço real da passagem",
+  estrutura_urbana: "Estrutura urbana (opcional)",
 };
