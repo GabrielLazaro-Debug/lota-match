@@ -4,19 +4,23 @@ import { kml } from "@tmcw/togeojson";
 import type { Formula, Lotacao, PesoProfile } from "./types";
 import { buildProfilesFromRows } from "./data";
 import { deriveAtratividade } from "./deriveAtratividade";
+import { computeEstruturaUrbana } from "./estruturaUrbana";
 
-const NUM_FIELDS = ["vagas","pontuacao_lotacao","atratividade_pontos","saude","educacao","custo_vida",
+const NUM_FIELDS = ["vagas","vagas_disponiveis","pontuacao_lotacao","atratividade_pontos","saude","educacao","custo_vida",
   "adfron_flag","adfron_pontos","aeroporto","voo_direto_fortaleza","passagem_media","passagem_valor_min",
-  "passagem_valor_max","passagem_categoria","score_final"];
+  "passagem_valor_max","passagem_categoria","score_final","populacao","pib_per_capita",
+  "ips_brasil_2025","ips_agua_saneamento","ips_seguranca_pessoal","ifdm_firjan","saude_firjan",
+  "emprego_renda_firjan","taxa_homicidios","saude_leitos","fipezap_m2"];
 
 function normalizeRow(r: any): Lotacao {
   const out: any = { ...r };
   for (const f of NUM_FIELDS) if (out[f] != null) out[f] = Number(out[f]);
   // ADFRON: normaliza para 0 ou 2 (qualquer valor > 0 = ativo)
   const adfronAtivo = (Number(out.adfron_pontos) || 0) > 0 || out.adfron_flag === 1 || out.adfron_flag === true;
+  out.adfron_flag = adfronAtivo ? 1 : 0;
   out.adfron_pontos = adfronAtivo ? 2 : 0;
-  // Atratividade derivada (informativa, nao entra no score)
   out.atratividade_pontos_calc = deriveAtratividade(out.pontuacao_lotacao).pontos;
+  out.estrutura_urbana_pontos = computeEstruturaUrbana(out);
   if (!out.id_lotacao && out.unidade && out.municipio) out.id_lotacao = `${out.unidade}-${out.municipio}`;
   return out as Lotacao;
 }
