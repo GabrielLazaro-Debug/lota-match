@@ -74,6 +74,8 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
           <PriceRow lot={lot} />
         </div>
 
+        <SocioContext lot={lot} />
+
         <div className="mt-6">
           <div className="mb-2 text-sm font-medium">Perfil radar</div>
           <div className="h-56">
