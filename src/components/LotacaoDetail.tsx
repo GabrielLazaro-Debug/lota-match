@@ -68,6 +68,7 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
             v={lot.voo_direto_origem === true ? "Sim" : lot.voo_direto_origem === false ? "Não" : "indisponível"}
             sub={lot.origem_iata && lot.destino_iata ? `${lot.origem_iata} → ${lot.destino_iata}` : undefined} />
           <Row icon={Mountain} label="ADFRON" v={(lot.adfron_pontos ?? 0) > 0 ? "Sim" : "Não"} />
+          <Row icon={Sparkles} label="Atratividade" v={atratividade.label} sub="derivada da pontuação da lotação" />
           <Row icon={MapPin} label="Distância da sua origem" v={lot.distancia_origem_km != null ? `${lot.distancia_origem_km.toLocaleString("pt-BR")} km` : "—"} />
           <Row icon={MapPin} label="Distância de Fortaleza" v={lot.distancia_fortaleza_km != null ? `${lot.distancia_fortaleza_km.toLocaleString("pt-BR")} km` : "—"} />
           <PriceRow lot={lot} />
