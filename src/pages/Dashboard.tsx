@@ -32,14 +32,20 @@ export default function Dashboard() {
   const [adfron, setAdfron] = useState(false);
   const [direct, setDirect] = useState(false);
   const [topOnly, setTopOnly] = useState(false);
+  const [popMin, setPopMin] = useState<string>("");
+  const [ifdmMin, setIfdmMin] = useState<string>("");
+  const [homMax, setHomMax] = useState<string>("");
 
   const filtered = useMemo(() => ranked.filter(({ lot }) => {
     if (q && !`${lot.municipio} ${lot.unidade}`.toLowerCase().includes(q.toLowerCase())) return false;
     if (uf && lot.uf !== uf.toUpperCase()) return false;
     if (adfron && (lot.adfron_pontos ?? 0) === 0) return false;
     if (direct && lot.voo_direto_origem !== true) return false;
+    const popN = Number(popMin); if (popMin && popN > 0 && Number(lot.populacao ?? 0) < popN) return false;
+    const ifdmN = Number(ifdmMin); if (ifdmMin && ifdmN > 0 && Number(lot.ifdm_firjan ?? 0) < ifdmN) return false;
+    const homN = Number(homMax); if (homMax && homN > 0 && lot.taxa_homicidios != null && Number(lot.taxa_homicidios) > homN) return false;
     return true;
-  }).slice(0, topOnly ? 10 : undefined), [ranked, q, uf, adfron, direct, topOnly]);
+  }).slice(0, topOnly ? 10 : undefined), [ranked, q, uf, adfron, direct, topOnly, popMin, ifdmMin, homMax]);
 
   const [detail, setDetail] = useState<{ lot: Lotacao; score: ScoreResult } | undefined>();
   const [cmpA, setCmpA] = useState<{ lot: Lotacao; score: ScoreResult } | undefined>();
@@ -145,6 +151,18 @@ export default function Dashboard() {
               <div className="flex items-center justify-between"><Label className="text-xs">Apenas ADFRON</Label><Switch checked={adfron} onCheckedChange={setAdfron} /></div>
               <div className="flex items-center justify-between"><Label className="text-xs">Com voo direto da sua origem</Label><Switch checked={direct} onCheckedChange={setDirect} /></div>
               <div className="flex items-center justify-between"><Label className="text-xs">Top 10 apenas</Label><Switch checked={topOnly} onCheckedChange={setTopOnly} /></div>
+              <div>
+                <Label className="text-xs">População mínima</Label>
+                <Input type="number" min={0} placeholder="ex: 100000" value={popMin} onChange={(e) => setPopMin(e.target.value)} className="mt-1" />
+              </div>
+              <div>
+                <Label className="text-xs">IFDM mínimo (0–1)</Label>
+                <Input type="number" min={0} max={1} step={0.05} placeholder="ex: 0.65" value={ifdmMin} onChange={(e) => setIfdmMin(e.target.value)} className="mt-1" />
+              </div>
+              <div>
+                <Label className="text-xs">Taxa de homicídios máxima</Label>
+                <Input type="number" min={0} step={1} placeholder="ex: 30" value={homMax} onChange={(e) => setHomMax(e.target.value)} className="mt-1" />
+              </div>
             </div>
           </div>
         </aside>
