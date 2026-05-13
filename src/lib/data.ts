@@ -47,14 +47,14 @@ export const DEFAULT_FORMULAS: Formula[] = (formulasRaw as any[]).map((r) => {
 });
 
 export const SCENARIOS: { id: string; nome: string; emoji: string; weights: Record<string, number>; descricao: string }[] = [
-  { id: "money", nome: "Maximizar dinheiro", emoji: "💰", descricao: "Prioriza custo de vida baixo, atratividade e ADFRON.",
-    weights: { saude: 1, educacao: 1, custo_vida: 3, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 3, atratividade_pontos: 3 } },
+  { id: "money", nome: "Maximizar dinheiro", emoji: "💰", descricao: "Prioriza custo de vida baixo e ADFRON.",
+    weights: { saude: 1, educacao: 1, custo_vida: 3, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 3 } },
   { id: "fortaleza", nome: "Visitar Fortaleza", emoji: "✈️", descricao: "Prioriza voo direto e categoria de passagem.",
-    weights: { saude: 1, educacao: 1, custo_vida: 1, aeroporto: 2, voo_direto_fortaleza: 4, passagem_categoria: 3, adfron_pontos: 1, atratividade_pontos: 1 } },
+    weights: { saude: 1, educacao: 1, custo_vida: 1, aeroporto: 2, voo_direto_fortaleza: 4, passagem_categoria: 3, adfron_pontos: 1 } },
   { id: "familia", nome: "Família", emoji: "👨‍👩‍👧", descricao: "Saúde, educação e qualidade de vida em alta.",
-    weights: { saude: 3, educacao: 3, custo_vida: 2, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 0, atratividade_pontos: 1 } },
-  { id: "rapida", nome: "Remoção rápida", emoji: "🚀", descricao: "Foca atratividade alta e ADFRON para acelerar saída.",
-    weights: { saude: 1, educacao: 1, custo_vida: 1, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 4, atratividade_pontos: 4 } },
+    weights: { saude: 3, educacao: 3, custo_vida: 2, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 0 } },
+  { id: "rapida", nome: "Remoção rápida", emoji: "🚀", descricao: "Foca pontuação de lotação alta e ADFRON.",
+    weights: { saude: 1, educacao: 1, custo_vida: 1, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 4, pontuacao_lotacao: 3 } },
   { id: "tranquila", nome: "Cidade tranquila", emoji: "🌿", descricao: "Cidades menores, custo equilibrado.",
-    weights: { saude: 2, educacao: 2, custo_vida: 2, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 1, atratividade_pontos: 2 } },
+    weights: { saude: 2, educacao: 2, custo_vida: 2, aeroporto: 1, voo_direto_fortaleza: 1, passagem_categoria: 1, adfron_pontos: 1 } },
 ];

@@ -6,6 +6,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { buildSkyscannerDayViewUrl, buildGoogleFlightsUrl, buildSearchHintText } from "@/lib/flightLinks";
+import { deriveAtratividade } from "@/lib/deriveAtratividade";
+import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 interface Props {
@@ -15,13 +17,14 @@ interface Props {
 
 export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
   if (!lot || !score) return null;
+  const atratividade = deriveAtratividade(lot.pontuacao_lotacao);
   const radarData = [
     { k: "Saúde", v: lot.saude ?? 0, max: 5 },
     { k: "Educação", v: lot.educacao ?? 0, max: 5 },
     { k: "Custo vida", v: (lot.custo_vida ?? 0) * 2.5, max: 5 },
-    { k: "Atratividade", v: (lot.atratividade_pontos ?? 0) * 2.5, max: 5 },
+    { k: "Atratividade", v: atratividade.pontos * 2.5, max: 5 },
     { k: "Aeroporto", v: (lot.aeroporto ?? 0) * 5, max: 5 },
-    { k: "ADFRON", v: (lot.adfron_pontos ?? 0) * 1.25, max: 5 },
+    { k: "ADFRON", v: (lot.adfron_pontos ?? 0) * 2.5, max: 5 },
   ];
   const contrib = score.terms.filter((t) => t.contribution !== 0)
     .sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
@@ -65,6 +68,7 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
             v={lot.voo_direto_origem === true ? "Sim" : lot.voo_direto_origem === false ? "Não" : "indisponível"}
             sub={lot.origem_iata && lot.destino_iata ? `${lot.origem_iata} → ${lot.destino_iata}` : undefined} />
           <Row icon={Mountain} label="ADFRON" v={(lot.adfron_pontos ?? 0) > 0 ? "Sim" : "Não"} />
+          <Row icon={Sparkles} label="Atratividade" v={atratividade.label} sub="derivada da pontuação da lotação" />
           <Row icon={MapPin} label="Distância da sua origem" v={lot.distancia_origem_km != null ? `${lot.distancia_origem_km.toLocaleString("pt-BR")} km` : "—"} />
           <Row icon={MapPin} label="Distância de Fortaleza" v={lot.distancia_fortaleza_km != null ? `${lot.distancia_fortaleza_km.toLocaleString("pt-BR")} km` : "—"} />
           <PriceRow lot={lot} />
