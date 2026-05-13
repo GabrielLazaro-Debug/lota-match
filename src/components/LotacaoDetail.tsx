@@ -17,13 +17,14 @@ interface Props {
 
 export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
   if (!lot || !score) return null;
+  const atratividade = deriveAtratividade(lot.pontuacao_lotacao);
   const radarData = [
     { k: "Saúde", v: lot.saude ?? 0, max: 5 },
     { k: "Educação", v: lot.educacao ?? 0, max: 5 },
     { k: "Custo vida", v: (lot.custo_vida ?? 0) * 2.5, max: 5 },
-    { k: "Atratividade", v: (lot.atratividade_pontos ?? 0) * 2.5, max: 5 },
+    { k: "Atratividade", v: atratividade.pontos * 2.5, max: 5 },
     { k: "Aeroporto", v: (lot.aeroporto ?? 0) * 5, max: 5 },
-    { k: "ADFRON", v: (lot.adfron_pontos ?? 0) * 1.25, max: 5 },
+    { k: "ADFRON", v: (lot.adfron_pontos ?? 0) * 2.5, max: 5 },
   ];
   const contrib = score.terms.filter((t) => t.contribution !== 0)
     .sort((a, b) => Math.abs(b.contribution) - Math.abs(a.contribution));
