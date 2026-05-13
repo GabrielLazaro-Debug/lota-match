@@ -3,6 +3,7 @@ import JSZip from "jszip";
 import { kml } from "@tmcw/togeojson";
 import type { Formula, Lotacao, PesoProfile } from "./types";
 import { buildProfilesFromRows } from "./data";
+import { deriveAtratividade } from "./deriveAtratividade";
 
 const NUM_FIELDS = ["vagas","pontuacao_lotacao","atratividade_pontos","saude","educacao","custo_vida",
   "adfron_flag","adfron_pontos","aeroporto","voo_direto_fortaleza","passagem_media","passagem_valor_min",
@@ -14,6 +15,8 @@ function normalizeRow(r: any): Lotacao {
   // ADFRON: normaliza para 0 ou 2 (qualquer valor > 0 = ativo)
   const adfronAtivo = (Number(out.adfron_pontos) || 0) > 0 || out.adfron_flag === 1 || out.adfron_flag === true;
   out.adfron_pontos = adfronAtivo ? 2 : 0;
+  // Atratividade derivada (informativa, nao entra no score)
+  out.atratividade_pontos_calc = deriveAtratividade(out.pontuacao_lotacao).pontos;
   if (!out.id_lotacao && out.unidade && out.municipio) out.id_lotacao = `${out.unidade}-${out.municipio}`;
   return out as Lotacao;
 }
