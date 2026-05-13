@@ -31,7 +31,7 @@ export default function LotacaoCard({ lot, score, rank, maxScore, onClick, selec
             <div className="truncate font-display text-base font-semibold">{lot.municipio}</div>
             <span className="rounded-md bg-secondary px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">{lot.uf}</span>
           </div>
-          <div className="truncate text-xs text-muted-foreground">{lot.unidade} · {lot.vagas} vagas</div>
+          <div className="truncate text-xs text-muted-foreground">{lot.unidade} · {lot.vagas_disponiveis ?? lot.vagas} vagas</div>
         </div>
         <div className="text-right">
           <div className="font-mono text-lg font-bold text-primary">{score.total.toFixed(1)}</div>
