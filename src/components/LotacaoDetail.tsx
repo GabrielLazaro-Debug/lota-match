@@ -207,3 +207,41 @@ function PriceRow({ lot }: { lot: Lotacao }) {
     </div>
   );
 }
+
+function SocioContext({ lot }: { lot: Lotacao }) {
+  const items: { label: string; value: string }[] = [];
+  const fmt = (n?: number, opts?: Intl.NumberFormatOptions) =>
+    n != null && !Number.isNaN(Number(n)) ? Number(n).toLocaleString("pt-BR", opts) : null;
+  const pop = fmt(lot.populacao);
+  if (pop) items.push({ label: "População", value: pop });
+  const pib = fmt(lot.pib_per_capita, { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  if (pib) items.push({ label: "PIB per capita", value: pib });
+  if (lot.ifdm_firjan != null) items.push({ label: "IFDM Firjan", value: Number(lot.ifdm_firjan).toFixed(3) });
+  if (lot.ips_brasil_2025 != null) items.push({ label: "IPS Brasil 2025", value: Number(lot.ips_brasil_2025).toFixed(1) });
+  if (lot.ips_agua_saneamento != null) items.push({ label: "IPS água/saneamento", value: Number(lot.ips_agua_saneamento).toFixed(1) });
+  if (lot.ips_seguranca_pessoal != null) items.push({ label: "IPS segurança pessoal", value: Number(lot.ips_seguranca_pessoal).toFixed(1) });
+  if (lot.taxa_homicidios != null) items.push({ label: "Taxa de homicídios", value: `${Number(lot.taxa_homicidios).toFixed(1)} / 100k` });
+  if (lot.saude_leitos != null) items.push({ label: "Leitos de saúde", value: String(lot.saude_leitos) });
+  if (lot.fipezap_m2 != null) items.push({ label: "FIPEZAP m²", value: `R$ ${Number(lot.fipezap_m2).toLocaleString("pt-BR")}` });
+  if (lot.rotas_voo_direto_txt) items.push({ label: "Rotas (voos diretos)", value: lot.rotas_voo_direto_txt });
+  if (lot.dist_aeroporto_grande_porte_txt) items.push({ label: "Aeroporto grande porte", value: lot.dist_aeroporto_grande_porte_txt });
+  if (items.length === 0) return null;
+  return (
+    <div className="mt-6">
+      <div className="mb-2 text-sm font-medium">Contexto socioeconômico</div>
+      <div className="grid gap-1 text-xs">
+        {items.map((i) => (
+          <div key={i.label} className="flex items-center justify-between rounded-lg bg-secondary/30 px-3 py-1.5">
+            <span className="text-muted-foreground">{i.label}</span>
+            <span className="font-medium">{i.value}</span>
+          </div>
+        ))}
+      </div>
+      {lot.last_updated_at && (
+        <div className="mt-1 text-[10px] text-muted-foreground">
+          Atualizado em {new Date(lot.last_updated_at).toLocaleDateString("pt-BR")} · fonte: {lot.last_update_source ?? "—"}
+        </div>
+      )}
+    </div>
+  );
+}
