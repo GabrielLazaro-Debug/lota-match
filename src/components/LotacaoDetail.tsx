@@ -6,6 +6,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Heart, GraduationCap, Wallet, Plane, Mountain, MapPin, AlertCircle, CheckCircle2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { buildSkyscannerDayViewUrl, buildGoogleFlightsUrl, buildSearchHintText } from "@/lib/flightLinks";
+import { deriveAtratividade } from "@/lib/deriveAtratividade";
+import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 interface Props {
