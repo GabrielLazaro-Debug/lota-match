@@ -10,8 +10,16 @@ import { toast } from "sonner";
 
 export default function Landing() {
   const nav = useNavigate();
-  const { setLotacoes, lotacoes, saveProfile, profiles, setKml } = useStore();
+  const { setLotacoes, lotacoes, saveProfile, profiles, formulas, activeFormulaId, setKml } = useStore();
   const xlsxRef = useRef<HTMLInputElement>(null);
+
+  const isDisponivel = (lot: any) => Number(lot?.vagas_disponiveis ?? lot?.vagas ?? 0) > 0;
+  const familiaProfile = profiles.find((p) => /famil/i.test(p.id) || /famil/i.test(p.nome));
+  const familiaWeights = familiaProfile?.pesos ?? {};
+  const formula = formulas.find((f) => f.id === activeFormulaId) ?? formulas[0];
+  const topFamilia = formula
+    ? rank(lotacoes.filter(isDisponivel), formula, familiaWeights).slice(0, 4)
+    : [];
   const kmlRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
 
