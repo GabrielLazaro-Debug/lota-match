@@ -11,6 +11,9 @@ interface Props {
 
 export default function LotacaoCard({ lot, score, rank, maxScore, onClick, selected }: Props) {
   const match = Math.round((score.total / Math.max(maxScore, 1)) * 100);
+  const atratividade = deriveAtratividade(lot.pontuacao_lotacao);
+  const atratTone: "default" | "accent" | "warning" =
+    atratividade.label === "Alta" ? "accent" : atratividade.label === "Baixa" ? "warning" : "default";
   const indic = (lot.indicacao ?? "").toLowerCase();
   const indicColor =
     indic.includes("excelente") || indic.includes("ótimo") ? "bg-success/20 text-success border-success/30"
