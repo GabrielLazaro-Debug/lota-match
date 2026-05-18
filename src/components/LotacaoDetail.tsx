@@ -9,6 +9,7 @@ import { buildSkyscannerDayViewUrl, buildGoogleFlightsUrl, buildSearchHintText }
 import { deriveAtratividade } from "@/lib/deriveAtratividade";
 import { Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import ClimateSection from "@/components/ClimateSection";
 
 interface Props {
   open: boolean; onClose: () => void;
@@ -75,6 +76,8 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
         </div>
 
         <SocioContext lot={lot} />
+
+        <ClimateSection lat={lot.lat} lon={lot.lon} />
 
         <div className="mt-6">
           <div className="mb-2 text-sm font-medium">Perfil radar</div>
