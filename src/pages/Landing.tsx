@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/lib/store";
+import { rank } from "@/lib/scoring";
 import { importKmlOrKmz, importXlsx, mergeLotacoes } from "@/lib/importer";
 import { toast } from "sonner";
 
