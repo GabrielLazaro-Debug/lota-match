@@ -101,6 +101,8 @@ export default function Landing() {
               <div className="space-y-2">
                 {topFamilia.map((r, i) => {
                   const lot = r.lot;
+                  const vagasAtuais = Number((lot as any).vagas_disponiveis ?? (lot as any).vagas ?? 0);
+                  if (vagasAtuais <= 0) return null;
                   const adfron = (lot as any).adfron_pontos > 0 || (lot as any).adfron_flag === 1;
                   const vooDireto = (lot as any).voo_direto_origem === true;
                   const tags = [
@@ -110,10 +112,13 @@ export default function Landing() {
                   ].filter(Boolean).slice(0, 2).join(" · ");
                   return (
                     <div key={lot.id_lotacao ?? i} className="flex items-center gap-3 rounded-xl bg-secondary/60 p-3">
-                      <div className="grid h-8 w-8 place-items-center rounded-lg bg-grad-primary text-sm font-semibold text-primary-foreground">{i + 1}</div>
+                      <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-grad-primary text-sm font-semibold text-primary-foreground">{i + 1}</div>
                       <div className="flex-1 min-w-0">
                         <div className="truncate text-sm font-medium">{lot.municipio} / {lot.uf}</div>
                         <div className="truncate text-xs text-muted-foreground">{tags || lot.unidade}</div>
+                        <div className="mt-0.5 text-[11px] text-muted-foreground break-words">
+                          Vagas atuais: <span className="text-foreground/80 font-medium">{vagasAtuais}</span>
+                        </div>
                       </div>
                       <div className="font-mono text-sm text-primary">{r.score.total.toFixed(1)}</div>
                     </div>
