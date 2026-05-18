@@ -17,16 +17,22 @@ export default function CompareDialog({ open, onClose, a, b }: Props) {
     [b.lot.municipio]: b.score.terms[i]?.contribution ?? 0,
   }));
 
+  const getVagasAtuais = (lot: Lotacao) => (lot.vagas_disponiveis ?? lot.vagas ?? 0);
+  const fmtVagas = (lot: Lotacao) => {
+    const v = getVagasAtuais(lot);
+    return v > 0 ? String(v) : "Indisponível";
+  };
+
   const insights: string[] = [];
   const dScore = a.score.total - b.score.total;
   insights.push(`${dScore >= 0 ? a.lot.municipio : b.lot.municipio} tem score ${Math.abs(dScore).toFixed(2)} maior.`);
   if ((a.lot.passagem_media ?? 0) && (b.lot.passagem_media ?? 0)) {
-    const dP = (a.lot.passagem_media! - b.lot.passagem_media!);
-    insights.push(`Diferença média de passagem: R$ ${Math.abs(dP).toFixed(0)} (${dP >= 0 ? a.lot.municipio + " mais cara" : b.lot.municipio + " mais cara"}).`);
+    const dP = Math.round(a.lot.passagem_media! - b.lot.passagem_media!);
+    insights.push(`Diferença média de passagem: R$ ${Math.abs(dP).toLocaleString("pt-BR")} (${dP >= 0 ? a.lot.municipio + " mais cara" : b.lot.municipio + " mais cara"}).`);
   }
   if ((a.lot.distancia_origem_km ?? 0) && (b.lot.distancia_origem_km ?? 0)) {
-    const dD = (a.lot.distancia_origem_km! - b.lot.distancia_origem_km!);
-    insights.push(`Distância da sua origem: ${dD >= 0 ? b.lot.municipio + " mais perto" : a.lot.municipio + " mais perto"} por ${Math.abs(dD)} km.`);
+    const dD = Math.round((a.lot.distancia_origem_km! - b.lot.distancia_origem_km!) * 10) / 10;
+    insights.push(`Distância da sua origem: ${dD >= 0 ? b.lot.municipio + " mais perto" : a.lot.municipio + " mais perto"} por ${Math.abs(dD).toFixed(1)} km.`);
   }
   if ((a.lot.adfron_pontos ?? 0) !== (b.lot.adfron_pontos ?? 0))
     insights.push(`ADFRON: ${(a.lot.adfron_pontos ?? 0) > (b.lot.adfron_pontos ?? 0) ? a.lot.municipio : b.lot.municipio} pontua mais (impacto remoção).`);
@@ -42,13 +48,13 @@ export default function CompareDialog({ open, onClose, a, b }: Props) {
               <div className="text-xs text-muted-foreground">{x.lot.unidade}</div>
               <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                 <span>Score: <b className="text-primary">{x.score.total.toFixed(2)}</b></span>
-                <span>Vagas: {x.lot.vagas}</span>
+                <span>Vagas atuais: {fmtVagas(x.lot)}</span>
                 <span>Saúde: {x.lot.saude}</span>
                 <span>Educ.: {x.lot.educacao}</span>
                 <span>C.Vida: {x.lot.custo_vida}</span>
                 <span>Passagem: R$ {x.lot.passagem_media ?? "—"}</span>
                 <span>ADFRON: {x.lot.adfron_pontos ?? 0}</span>
-                <span>Origem: {x.lot.distancia_origem_km ?? "—"} km</span>
+                <span>Origem: {x.lot.distancia_origem_km?.toFixed(1) ?? "—"} km</span>
               </div>
             </div>
           ))}
@@ -73,3 +79,4 @@ export default function CompareDialog({ open, onClose, a, b }: Props) {
     </Dialog>
   );
 }
+
