@@ -99,21 +99,36 @@ export default function Landing() {
                 <span className="font-mono">score</span>
               </div>
               <div className="space-y-2">
-                {[
-                  { c: "Brasília / DF", s: 18.4, t: "Saúde 5 · Educ. 5" },
-                  { c: "Curitiba / PR", s: 16.9, t: "Voo direto · Custo OK" },
-                  { c: "Foz do Iguaçu / PR", s: 16.2, t: "ADFRON · Atratividade" },
-                  { c: "Boa Vista / RR", s: 15.5, t: "ADFRON · Remoção rápida" },
-                ].map((r, i) => (
-                  <div key={i} className="flex items-center gap-3 rounded-xl bg-secondary/60 p-3">
-                    <div className="grid h-8 w-8 place-items-center rounded-lg bg-grad-primary text-sm font-semibold text-primary-foreground">{i + 1}</div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium">{r.c}</div>
-                      <div className="text-xs text-muted-foreground">{r.t}</div>
+                {topFamilia.map((r, i) => {
+                  const lot = r.lot;
+                  const adfron = (lot as any).adfron_pontos > 0 || (lot as any).adfron_flag === 1;
+                  const vooDireto = (lot as any).voo_direto_origem === true;
+                  const tags = [
+                    adfron ? "ADFRON" : null,
+                    vooDireto ? "Voo direto" : null,
+                    lot.saude ? `Saúde ${lot.saude}` : null,
+                  ].filter(Boolean).slice(0, 2).join(" · ");
+                  return (
+                    <div key={lot.id_lotacao ?? i} className="flex items-center gap-3 rounded-xl bg-secondary/60 p-3">
+                      <div className="grid h-8 w-8 place-items-center rounded-lg bg-grad-primary text-sm font-semibold text-primary-foreground">{i + 1}</div>
+                      <div className="flex-1 min-w-0">
+                        <div className="truncate text-sm font-medium">{lot.municipio} / {lot.uf}</div>
+                        <div className="truncate text-xs text-muted-foreground">{tags || lot.unidade}</div>
+                      </div>
+                      <div className="font-mono text-sm text-primary">{r.score.total.toFixed(1)}</div>
                     </div>
-                    <div className="font-mono text-sm text-primary">{r.s.toFixed(1)}</div>
+                  );
+                })}
+                {topFamilia.length === 0 && (
+                  <div className="rounded-xl bg-secondary/60 p-3 text-xs text-muted-foreground">
+                    Poucas lotações disponíveis no momento.
                   </div>
-                ))}
+                )}
+                {topFamilia.length > 0 && topFamilia.length < 4 && (
+                  <div className="px-1 pt-1 text-xs text-muted-foreground">
+                    Poucas lotações disponíveis no momento.
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
