@@ -11,9 +11,14 @@ interface Props {
 
 export default function LotacaoCard({ lot, score, rank, maxScore, onClick, selected }: Props) {
   const match = Math.round((score.total / Math.max(maxScore, 1)) * 100);
+  const vagasAtuais = Number(lot.vagas_disponiveis ?? lot.vagas ?? 0);
+  if (vagasAtuais <= 0) return null;
   const atratividade = deriveAtratividade(lot.pontuacao_lotacao);
   const atratTone: "default" | "accent" | "warning" =
     atratividade.label === "Alta" ? "accent" : atratividade.label === "Baixa" ? "warning" : "default";
+  const pontLot = lot.pontuacao_lotacao != null
+    ? Number(lot.pontuacao_lotacao).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    : null;
   const indic = (lot.indicacao ?? "").toLowerCase();
   const indicColor =
     indic.includes("excelente") || indic.includes("ótimo") ? "bg-success/20 text-success border-success/30"
