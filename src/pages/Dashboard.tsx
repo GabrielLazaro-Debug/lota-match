@@ -82,8 +82,8 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur">
-        <div className="container flex h-14 items-center gap-3">
+      <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur safe-px">
+        <div className="container flex h-14 items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-thin">
           <Link to="/" className="flex items-center gap-2 font-display font-semibold">
             <div className="grid h-8 w-8 place-items-center rounded-lg bg-grad-primary"><Shield className="h-4 w-4 text-primary-foreground" /></div>
             Lotação<span className="text-grad">PF</span>

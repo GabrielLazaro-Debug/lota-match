@@ -45,7 +45,7 @@ export default function LotacaoDetail({ open, onClose, lot, score }: Props) {
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
-      <SheetContent side="right" className="w-full overflow-y-auto sm:max-w-xl">
+      <SheetContent side="right" className="w-full max-w-[100vw] overflow-y-auto ios-scroll p-4 sm:max-w-xl sm:p-6">
         <SheetHeader>
           <SheetTitle className="font-display">
             {lot.municipio} <span className="text-sm font-normal text-muted-foreground">/ {lot.uf}</span>
