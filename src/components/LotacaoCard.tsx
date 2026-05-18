@@ -1,4 +1,4 @@
-import { Plane, Mountain, Heart, GraduationCap, Wallet, MapPin, Star, Sparkles } from "lucide-react";
+import { Plane, Mountain, Heart, GraduationCap, Wallet, MapPin, Star, Sparkles, Target } from "lucide-react";
 import type { Lotacao, ScoreResult } from "@/lib/types";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
