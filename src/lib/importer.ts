@@ -60,14 +60,97 @@ export async function importXlsx(file: File): Promise<ImportResult> {
   return result;
 }
 
-export function mergeLotacoes(prev: Lotacao[], incoming: Lotacao[]): Lotacao[] {
-  const map = new Map<string, Lotacao>();
-  for (const l of prev) map.set(l.id_lotacao || `${l.unidade}-${l.municipio}`, l);
-  for (const l of incoming) {
-    const k = l.id_lotacao || `${l.unidade}-${l.municipio}`;
-    map.set(k, { ...map.get(k), ...l });
+export function normalizeKey(s: unknown): string {
+  return String(s ?? "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")     // diacríticos
+    .toLowerCase()
+    .replace(/[–—−]/g, "-")              // padroniza hífens
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function parseUnidade(u?: string): { tipo?: string; sigla?: string; uf?: string } {
+  if (!u) return {};
+  const parts = String(u).split("/").map((p) => p.trim()).filter(Boolean);
+  if (parts.length >= 3) return { tipo: parts[0], sigla: parts[1], uf: parts[2] };
+  if (parts.length === 2) return { tipo: parts[0], uf: parts[1] };
+  return { tipo: parts[0] };
+}
+
+export interface MergeReport {
+  updated: number;
+  added: number;
+  notFound: Array<{ id_lotacao?: string; unidade?: string; municipio?: string; uf?: string }>;
+  matchedByFallback: Array<{ candidate: string; matched: string; via: string }>;
+}
+
+export function mergeLotacoesWithReport(prev: Lotacao[], incoming: Lotacao[]): { merged: Lotacao[]; report: MergeReport } {
+  const report: MergeReport = { updated: 0, added: 0, notFound: [], matchedByFallback: [] };
+  // Indices
+  const byId = new Map<string, Lotacao>();
+  const byUfMun = new Map<string, Lotacao[]>();
+  for (const l of prev) {
+    const key = l.id_lotacao || `${l.unidade}-${l.municipio}`;
+    byId.set(normalizeKey(key), l);
+    const k = `${normalizeKey(l.uf)}|${normalizeKey(l.municipio)}`;
+    const arr = byUfMun.get(k) ?? []; arr.push(l); byUfMun.set(k, arr);
   }
-  return [...map.values()];
+  const merged = [...prev];
+  const indexOf = (l: Lotacao) => merged.indexOf(l);
+
+  for (const inc of incoming) {
+    const candId = inc.id_lotacao || `${inc.unidade}-${inc.municipio}`;
+    let match: Lotacao | undefined;
+    let via = "id";
+
+    // 1) id normalizado
+    match = byId.get(normalizeKey(candId));
+
+    // 2) fallback por (uf + municipio)
+    if (!match) {
+      const k = `${normalizeKey(inc.uf)}|${normalizeKey(inc.municipio)}`;
+      const arr = byUfMun.get(k) ?? [];
+      if (arr.length === 1) { match = arr[0]; via = "uf+municipio"; }
+      else if (arr.length > 1) {
+        // 3) refinar por (tipo + sigla) extraídos do unidade
+        const cp = parseUnidade(inc.unidade);
+        const refined = arr.filter((x) => {
+          const xp = parseUnidade(x.unidade);
+          return cp.tipo && xp.tipo && normalizeKey(cp.tipo) === normalizeKey(xp.tipo)
+            && (!cp.sigla || !xp.sigla || normalizeKey(cp.sigla) === normalizeKey(xp.sigla));
+        });
+        if (refined.length === 1) { match = refined[0]; via = "uf+municipio+tipo/sigla"; }
+        else {
+          // 4) unidade contendo `${tipo}/${sigla}/${uf}`
+          const needle = normalizeKey(`${cp.tipo ?? ""}/${cp.sigla ?? ""}/${inc.uf ?? ""}`);
+          const sub = arr.filter((x) => normalizeKey(x.unidade).includes(needle.replace(/\/+$/g, "")));
+          if (sub.length === 1) { match = sub[0]; via = "unidade-substring"; }
+        }
+      }
+    }
+
+    if (match) {
+      const idx = indexOf(match);
+      const next = { ...match, ...inc };
+      merged[idx] = next;
+      // mantém índices atualizados
+      byId.set(normalizeKey(next.id_lotacao || candId), next);
+      report.updated++;
+      if (via !== "id") report.matchedByFallback.push({ candidate: candId, matched: match.id_lotacao || `${match.unidade}-${match.municipio}`, via });
+    } else {
+      merged.push(inc);
+      byId.set(normalizeKey(candId), inc);
+      report.added++;
+      report.notFound.push({ id_lotacao: candId, unidade: inc.unidade, municipio: inc.municipio, uf: inc.uf });
+    }
+  }
+  return { merged, report };
+}
+
+// Mantém assinatura antiga para retrocompatibilidade
+export function mergeLotacoes(prev: Lotacao[], incoming: Lotacao[]): Lotacao[] {
+  return mergeLotacoesWithReport(prev, incoming).merged;
 }
 
 export async function importKmlOrKmz(file: File): Promise<any> {
